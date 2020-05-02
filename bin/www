@@ -1,12 +1,23 @@
 #!/usr/bin/env node
+/** 
+ * @fileoverview  là điểm bắt đầu, entry point của website
+*/
 
 /**
- * Module dependencies.
+ * Khai báo sử dụng các module cần thiết
  */
 
+ /** entry point thực sự với các tính năng được khai báo và thực thi ở đây */
 var app = require('../app');
-var debug = require('debug')('nodejs-stepbystep:server');
+/** Triệu gọi module debug:  hiển thị thêm tên của module trong dòng log; tô màu các thông báo, mã lỗi;
+ *  @param param2 Tham số thứ 2 là tên gợi nhớ  (thường là tên module) sẽ hiển thị đầu tiên của dòng thông báo.
+ *                Và khi đó để hiển thị được thông báo, trước khi chạy node, phải thiết lập biến môi trường DEBUG
+ *                > SET DEBUG=www  & node bin/www
+ *  @see https://www.npmjs.com/package/debug
+*/
+var debug = require('debug')('www');
 var http = require('http');
+debug('Dịch vụ lắng nghe ở cổng  %o', process.env.PORT);
 
 /**
  * Get port from environment and store in Express.
@@ -16,17 +27,17 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Tạo đối tượng HTTP server.
  */
 
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+/** Thiết lập cổng lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
 server.listen(port);
+
+/** Khai báo hàm callback khi có lỗi xảy ra */
 server.on('error', onError);
+/** Khai báo hàm callback khi có tạo listerning port */
 server.on('listening', onListening);
 
 /**
@@ -50,9 +61,9 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+ * Hàm sự kiện xảy ra khi HTTP server ghi nhận có lỗi
+ * @param error   in/out  đối tượng quản lý HTTP error
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -78,13 +89,12 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Hàm sự kiện xảy ra khi HTTP server tạo ra cổng dịch vụ lắng nghe
  */
-
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  debug('Dịch vụ đang lắng nghe trên cổng ' + bind);
 }
