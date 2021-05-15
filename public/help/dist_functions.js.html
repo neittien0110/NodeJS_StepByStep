@@ -1,0 +1,1805 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>dist/functions.js</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #007CB7;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #007CB7;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #007CB7;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #007CB7;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"dd/MM/yyyy","systemName":"Mycel","systemSummary":"Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn","systemLogo":"img/icon-32.png","systemColor":"#007CB7","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"global","title":"HÀM XỬ LÝ","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"mixin","title":"HÀM TÀI CHÍNH","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"interface","title":"SOICT-HUST","summary":"Dành riêng cho Bách khoa Hà Nội."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"KIỂU DỮ LIỆU","summary":"các kiểu dữ liệu "}],"footer":"tiện lợi như mơ","copyright":"Bản quyền thuộc Techlink Co Ltd.,","linenums":true,"collapseSymbols":false,"inverseNav":false,"inlineNav":true,"outputSourceFiles":false,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname","search":true,"favicon":"favicon.ico","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/icon-32.png);">
+					Mycel
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li><a href="global.html">HÀM XỬ LÝ</a></li>
+							<li><a href="list_interface.html">SOICT-HUST</a></li>
+							<li><a href="list_mixin.html">HÀM TÀI CHÍNH</a></li>
+							<li><a href="list_module.html">Modules</a></li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">dist/functions.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">"use strict";
+//---------------------------------------------------------------------------------------
+//  Các hàm tìm kiếm và tham chiếu
+//---------------------------------------------------------------------------------------
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this &amp;&amp; this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] &amp; 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" &amp;&amp; (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y &amp;&amp; (t = op[0] &amp; 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) &amp;&amp; t.call(y), 0) : y.next) &amp;&amp; !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] &amp; 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 &amp;&amp; t[t.length - 1]) &amp;&amp; (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 &amp;&amp; (!t || (op[1] > t[0] &amp;&amp; op[1] &lt; t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 &amp;&amp; _.label &lt; t[1]) { _.label = t[1]; t = op; break; }
+                    if (t &amp;&amp; _.label &lt; t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] &amp; 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+exports.__esModule = true;
+exports.IPseUNCP = exports.DecimalToText = exports.DecimalToSpeech = exports.NumberToText = exports.NumberToSpeech = exports.QRCode = exports.StringFontFormatter = exports.StringCellFormatter = exports.TyGia = exports.TacGia = exports.logMessage = exports.increment = exports.currentTime = exports.clock = void 0;
+/**
+ * Tìm kiếm các cell có nội dung giống nhau
+ * @customfunction Duplicate
+ * @param {string} FirstArea Vùng cần tìm kiếm
+ * @param {string} SecondArea Vùng cần tìm kiếm
+ * @returns {Promise&lt;number>} Số lượng trùng lặp
+ * @example Vùng tìm kiếm là [ 1 2 4 b]
+ *                           [ a b 1 1]
+ * thì kết quả trả về là 2 vì các cell có giá trị 1 và b trùng nhau,
+ * đồng thời các cell đó sẽ được tô vàng
+ * @helpurl https://mycel.app/help/Duplicate.html
+ * @module
+ */
+function Duplicate(FirstArea, SecondArea) {
+    return __awaiter(this, void 0, Promise, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, 1];
+        });
+    });
+}
+/**
+ * Số star mà một dự án công khai trên GitHub có được
+ * @customfunction GITHUB.GetStarCount
+ * @param {string} userName Tên tài khoản github
+ * @param {string} repoName Tên repoName công khai
+ * @returns {Promise&lt;number>} Số star
+ * @example =MY.GITHUB.GetStarCount("neittien0110","MyExcelAddin")=1
+ * @helpurl https://mycel.app/help/GetStarCount.html
+ * @module
+ */
+function GetStarCount(userName, repoName) {
+    return __awaiter(this, void 0, Promise, function () {
+        var url, response, jsonResponse, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    url = "https://api.github.com/repos/" + userName + "/" + repoName;
+                    return [4 /*yield*/, fetch(url)];
+                case 1:
+                    response = _a.sent();
+                    //Expect that status code is in 200-299 range
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    jsonResponse = _a.sent();
+                    return [2 /*return*/, jsonResponse.watchers_count];
+                case 3:
+                    error_1 = _a.sent();
+                    return [2 /*return*/, error_1];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+//---------------------------------------------------------------------------------------
+//  Các hàm xử lý tên người
+//---------------------------------------------------------------------------------------
+/**
+ * Chuyển họ tên có dấu thành họ tên không dấu
+ * @customfunction
+ * @param {string} HoTen Tên có có dấu. Ví dụ Lê Văn Long
+ * @returns {string} họ tên viết không dấu
+ * @example =LayTenKhongDau(A1), =LayTenKhongDau('Nguyễn Thị Thanh Nga')
+ * @helpurl https://mycel.app/help/global.html#LayTenKhongDau
+ */
+function LayTenKhongDau(HoTen) {
+    return VanBanKhongDau(HoTen);
+}
+/**
+ *  Trích ra phần tên, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Đinh Công Thuật
+ * @returns {string} Tên. Ví dụ Thuật
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayTen
+ */
+function LayTen(HoVaTen) {
+    //return "Lê Mạnh Hùng";
+    return ExtractLastName(HoVaTen);
+}
+/**
+ *  Trích ra phần họ, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Đinh Công Thuật
+ * @returns {string} Họ. Ví dụ Đinh
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayHo
+ */
+function LayHo(HoVaTen) {
+    return ExtractFirstName(HoVaTen);
+}
+/**
+ *  Trích ra phần tên đệm, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Nguyễn Thị Thuỷ
+ * @returns {string} Tên đệm. Ví dụ Thị
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayDem
+ */
+function LayDem(HoVaTen) {
+    return ExtractMiddleName(HoVaTen);
+}
+/**
+ *  Trích ra các chữ cái viết tắt đầu từ, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Nguyễn Thị Thanh Nga
+ * @returns {string} Chữ cái đầu. Ví dụ NTTN
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayCacChuCaiDau
+ */
+function LayCacChuCaiDau(HoVaTen) {
+    return ExtractFirstLetters(HoVaTen);
+}
+/**
+ * Loại bỏ dấu khỏi chuỗi văn bản tiếng Việt.
+ * @customfunction VanBanKhongDau
+ * @param {string} text Văn bản tiếng Việt có dấu. Ví dụ Lê Văn Long
+ * @returns {string} văn bản không dấu
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#VanBanKhongDau
+ */
+function VanBanKhongDau(text) {
+    //Danh sách các kí tự tiếng Việt
+    var VietnameseSigns = [
+        "aAeEoOuUiIdDyY",
+        "áàạảãâấầậẩẫăắằặẳẵ",
+        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+        "éèẹẻẽêếềệểễ",
+        "ÉÈẸẺẼÊẾỀỆỂỄ",
+        "óòọỏõôốồộổỗơớờợởỡ",
+        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+        "úùụủũưứừựửữ",
+        "ÚÙỤỦŨƯỨỪỰỬỮ",
+        "íìịỉĩ",
+        "ÍÌỊỈĨ",
+        "đ",
+        "Đ",
+        "ýỳỵỷỹ",
+        "ÝỲỴỶỸ"
+    ];
+    var regex;
+    for (var i = 1; i &lt; VietnameseSigns.length; i++) {
+        for (var j = 0; j &lt; VietnameseSigns[i].length; j++) {
+            // Fix-bug: không đổi được toàn bộ kí tự.
+            // Nguyên nhân: Hàm replace với tham số vào string chỉ cho phép đổi 1,2 trường hợp đầu tiên
+            //              Muốn thay thế toàn bộ, phải sử dụng tham số dạng Regex
+            regex = new RegExp(VietnameseSigns[i][j], "g");
+            text = text.replace(regex, VietnameseSigns[0][i - 1]);
+        }
+    }
+    return text;
+}
+/**
+ * Lấy duy nhất từ cuối cùng khỏi tên đầy đủ =MY.LAYTEN("Lê Văn Long")
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Từ cuối cùng
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractLastName(FullName) {
+    var i;
+    var len;
+    try {
+        /// Loại bỏ kí tự trống ở cuối nếu có
+        FullName = String(FullName).trimRight();
+        len = FullName.length;
+        /// Tìm vị trí kí tự space cuối cùng
+        for (i = len - 1; i >= 0; i--) {
+            if (FullName[i] == " ")
+                break;
+        }
+        if (i &lt; 0) {
+            return "";
+        }
+        else {
+            return FullName.substr(i + 1, len - i - 1);
+        }
+    }
+    catch (err) {
+        return err.message;
+    }
+}
+/**
+ * Lấy duy nhất từ đầu tiên khỏi tên đầy đủ
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Từ đầu tiên
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractFirstName(FullName) {
+    var i;
+    var len;
+    /// Loại bỏ kí tự trống ở đầu nếu có
+    FullName = FullName.trimLeft();
+    len = FullName.length;
+    /// Tìm vị trí kí tự space đầu tiên
+    for (i = 1; i &lt; len; i++) {
+        if (FullName[i] == " ")
+            break;
+    }
+    if (i &lt; len) {
+        return FullName.substr(0, i);
+    }
+    else {
+        return FullName;
+    }
+}
+/**
+ * Lấy duy nhất đệm  khỏi tên đầy đủ
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Đệm
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractMiddleName(FullName) {
+    var pos_end;
+    var pos_start;
+    var len;
+    /// Loại bỏ kí tự trống ở cả 2 đầu cuối nếu có
+    FullName = FullName.trim();
+    len = FullName.length;
+    /// Tìm vị trí kí tự space đầu tiên
+    for (pos_start = 1; pos_start &lt; len; pos_start++) {
+        if (FullName[pos_start] == " ")
+            break;
+    }
+    if (pos_start >= len) {
+        return "";
+    }
+    /// Bỏ qua các kí tự trống
+    for (pos_start++; pos_start &lt; len &amp;&amp; FullName[pos_start] == " "; pos_start++) { }
+    /// Tìm vị trí kí tự space cuối cùng
+    for (pos_end = len - 1; pos_end > pos_start; pos_end--) {
+        if (FullName[pos_end] == " ")
+            break;
+    }
+    if (pos_end &lt; pos_start) {
+        return "";
+    }
+    else {
+        return FullName.substring(pos_start, pos_end).trimRight();
+    }
+}
+/**
+ * Lấy các chữ cái đầu tên
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Chuỗi các chữ cái đầu
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractFirstLetters(FullName) {
+    /// Kết quả cần tính
+    var ShorthenName = "";
+    /// Loại bỏ kí tự trống ở cả 2 đầu cuối nếu có
+    FullName = FullName.trim();
+    var len = FullName.length;
+    if (len == 1) {
+        /// Nếu chỉ có 1 kí tự thì xong luôn
+        ShorthenName = FullName;
+    }
+    else {
+        /// Phân tách từ và chữ cái đầu của từng từ
+        ShorthenName = ShorthenName + FullName[0];
+        for (var i = 0; i &lt; len; i++) {
+            if (FullName[i] == " " &amp;&amp; i &lt; len - 1 &amp;&amp; FullName[i + 1] != " ") {
+                ShorthenName = ShorthenName + FullName[i + 1];
+                i++;
+            }
+        }
+    }
+    return ShorthenName;
+}
+module.exports.LayTenKhongDau = LayTenKhongDau;
+/// &lt;reference path="./nametools.ts" />
+//---------------------------------------------------------------------------------------
+//  Các hàm dành riêng cho Đại học Bách Khoa Hà Nội
+//---------------------------------------------------------------------------------------
+/**
+ * Email HUST do nhà trường cấp cho mỗi sinh viên
+ * @customfunction HUST.EmailSinhVien
+ * @param {string} HoVaTen Họ và tên đầy đủ. Ví dụ Lê Văn Long.
+ * @param {string} MaSoSinhVien Mã số SV do trường cấp. Bỏ trống nếu là giảng viên. Ví dụ 20202987.
+ * @returns {string} Email HUST của sinh viên. Ví dụ long.lv202987@sis.hust.edu.vn
+ * @example =StudentEmail("Lê Văn Long", 20202987) =long.lv202987@sis.hus.edu.vn
+ * @helpurl https://mycel.app/help/StudentEmail.html
+ * @interface
+ */
+function StudentEmail(HoVaTen, MaSoSinhVien) {
+    var TenKhongDau = LayTenKhongDau(HoVaTen);
+    var Email;
+    var MSSV;
+    MSSV = String(MaSoSinhVien);
+    if (MSSV.length == 8) {
+        ///Công thức dành cho email sinh viên
+        var ChuCaiDau = LayCacChuCaiDau(TenKhongDau);
+        Email =
+            LayTen(TenKhongDau) +
+                "." +
+                ChuCaiDau.substring(0, ChuCaiDau.length - 1) +
+                MSSV.substring(2, MSSV.length) +
+                "@sis.hust.edu.vn";
+    }
+    else if (MSSV == "undefined" || MSSV.length == 0) {
+        ///Công thức dành cho email giáo viên
+        Email = LayTen(TenKhongDau) + "." + LayHo(TenKhongDau) + LayDem(TenKhongDau).trim() + "@hust.edu.vn";
+    }
+    else {
+        Email = "Mã số không hợp lệ";
+    }
+    return Email;
+}
+/**
+ * Thời gian bắt đầu của mỗi kíp thi
+ * @customfunction HUST.KipThi
+ * @param {number} KipThi   Số thứ tự kíp thi, là 1 | 2 | 3 | 4. Bách Khoa Hà Nội chỉ có 4 buổi thi mỗi ngày.
+ * @param {string} PhanTach Kí tự phân tách giữa giờ và phút. Mặc định là ':'
+ * @returns {string} Giờ bắt đầu của kíp thi
+ * @example =KipThi(1) =7:00
+ *          =KipThi(3," giờ "") =12 giờ 30
+ * @helpurl https://mycel.app/help/KipThi.html
+ * @interface
+ */
+function KipThi(KipThi, PhanTach) {
+    if (PhanTach === void 0) { PhanTach = ":"; }
+    if (PhanTach === null) {
+        PhanTach = ":";
+    }
+    var StartTime;
+    switch (KipThi) {
+        case 1:
+            StartTime = "7" + PhanTach + "00";
+            break;
+        case 2:
+            StartTime = "9" + PhanTach + "30";
+            break;
+        case 3:
+            StartTime = "12" + PhanTach + "30";
+            break;
+        case 4:
+            StartTime = "15" + PhanTach + "00";
+            break;
+        default:
+            StartTime = "Không hợp lệ";
+            break;
+    }
+    return StartTime;
+}
+/**
+ * Thông tin profile của sinh viên, cán bộ trên hệ thống Sharepoint.
+ * @customfunction HUST.SharepointProfile
+ * @param {string} EmailSinhVien   Email HUST của sinh viên. Ví dụ chinh.bq002987@sis.hust.edu.vn
+ * @returns {string} URL Profile trên hệ thống Sharepoint trong Office365 của sinh viên đó.
+ * Lưu ý: người xem phải đăng nhập vào Office365 theo tài khoản email trường để có quyền xem thông tin tài khoản.
+ * @example =SharepointProfile("long.lv202987@sis.hust.edu.vn") =https://husteduvn-my.sharepoint.com/person.aspx?user=long.lv202987@sis.hust.edu.vn
+ * @helpurl https://mycel.app/help/SharepointProfile.html
+ * @interface
+ */
+function SharepointProfile(EmailSinhVien) {
+    return "https://husteduvn-my.sharepoint.com/person.aspx?user=" + EmailSinhVien;
+}
+/**
+ * Thông tin về Viện Công nghệ Thông tin và Truyền thông, Đại học Bách khoa Hà Nội
+ * @customfunction HUST.SOICT
+ * @returns {string[][]} Thông tin liên hệ
+ * @example =SOICT() = VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG
+ *                     SCHOOL OF INFORMATION AND COMMUNICATIONS TECHNOLOGY
+ * @helpurl https://mycel.app/help/SOICT.html
+ * @interface
+ */
+function SOICT() {
+    var result;
+    result = new Array();
+    result[0] = ["VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG"];
+    result[1] = ["SCHOOL OF INFORMATION AND COMMUNICATIONS TECHNOLOGY"];
+    result[2] = ["https://soict.hust.edu.vn/"];
+    result[3] = ["https://www.facebook.com/SoictOfficially"];
+    result[4] = ["Nhà B1 – Đại học Bách khoa Hà nội Số 1 Đại Cồ Việt – Hai Bà Trưng – Hà Nội"];
+    result[5] = ["024 3869 2463"];
+    return result;
+}
+/**
+ * Thông tin về Đại học Bách khoa Hà Nội
+ * @customfunction HUST.HUST
+ * @returns {string[][]} Thông tin liên hệ
+ * @example =HUST() = ĐẠI HỌC BÁCH KHOA HÀ NỘI
+ *                    Hanoi University of Science and Technology
+ * @helpurl https://mycel.app/help/HUST.html
+ * @interface
+ */
+function HUST() {
+    return [
+        ["ĐẠI HỌC BÁCH KHOA HÀ NỘI"],
+        ["Hanoi University of Science and Technology"],
+        ["https://www.hust.edu.vn/"],
+        ["https://www.facebook.com/dhbkhanoi"],
+        ["Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội"],
+        ["024 3869 4242"]
+    ];
+}
+/**
+ * Qui đổi điểm số ở thang đo 10 điểm về thang đo 4
+ * @customfunction HUST.ThangDiem10_4
+ * @param {number} d10 Điểm số ở thang đo 10. Ví dụ 8.0
+ * @returns {number} Điểm số ở thang đo 4. Ví dụ 3.5
+ * @example =ThangDiem10_4(9.5) =4.0
+ * @helpurl https://mycel.app/help/ThangDiem10_4.html
+ * @interface
+ */
+function ThangDiem10_4(d10) {
+    var x; // Điểm số ở thang ABCD
+    if (d10 >= 8.5 &amp;&amp; d10 &lt;= 10)
+        x = 4.0;
+    else if (d10 >= 8 &amp;&amp; d10 &lt; 8.5)
+        x = 3.5;
+    else if (d10 >= 7 &amp;&amp; d10 &lt; 8)
+        x = 3.0;
+    else if (d10 >= 6.5 &amp;&amp; d10 &lt; 7)
+        x = 2.5;
+    else if (d10 >= 5.5 &amp;&amp; d10 &lt; 6.5)
+        x = 2.0;
+    else if (d10 >= 5 &amp;&amp; d10 &lt; 5.5)
+        x = 1.5;
+    else if (d10 >= 4 &amp;&amp; d10 &lt; 5)
+        x = 1.0;
+    else if (d10 &lt; 4)
+        x = 0.0;
+    return x;
+}
+/**
+ * Qui đổi điểm số ở thang đo 10 điểm về thang đo ABCD
+ * @customfunction HUST.ThangDiem10_ABCD
+ * @param {number} d10 Điểm số ở thang đo 10. Ví dụ 8.5
+ * @returns {string} Điểm số ở thang đo 4. Ví dụ A
+ * @example =ThangDiem10_ABCD(9.5) =A+
+ * @helpurl https://mycel.app/help/ThangDiem10_ABCD.html
+ * @interface
+ */
+function ThangDiem10_ABCD(d10) {
+    var x; // Điểm số ở thang ABCD
+    if (d10 >= 9.5 &amp;&amp; d10 &lt;= 10)
+        x = "A+";
+    else if (d10 >= 8.5 &amp;&amp; d10 &lt; 9.5)
+        x = "A";
+    else if (d10 >= 8 &amp;&amp; d10 &lt; 8.5)
+        x = "B+";
+    else if (d10 >= 7 &amp;&amp; d10 &lt; 8)
+        x = "B";
+    else if (d10 >= 6.5 &amp;&amp; d10 &lt; 7)
+        x = "C+";
+    else if (d10 >= 5.5 &amp;&amp; d10 &lt; 6.5)
+        x = "C";
+    else if (d10 >= 5 &amp;&amp; d10 &lt; 5.5)
+        x = "D+";
+    else if (d10 >= 4 &amp;&amp; d10 &lt; 5)
+        x = "D";
+    else if (d10 &lt; 4)
+        x = "F";
+    return x;
+}
+/**
+ * Thời gian bắt đầu/kết thúc của các tiết học
+ * @customfunction HUST.TietHoc
+ * @param {number} Period Tiết học bắt đầu. Phạm vi [1, 14]. Ví dụ 1; 3;
+ * @param {boolean} Start Xem giờ bắt đầu (true) hoặc giờ kết thúc (false). Mặc định true.
+ * @param {string} [Seperator] Kí tự phân tách giữa giờ và phút. Mặc định là ':'
+ * @returns {string} Thời gian bắt đầu hoặc kết thúc của 1 tiết học hoặc nhiều tiết học.
+ * @example =TietHoc(2) =7h00
+ * @helpurl https://mycel.app/help/TietHoc.html
+ * @interface
+ */
+function TietHoc(Period, Start, Seperator) {
+    if (Start === void 0) { Start = true; }
+    if (Seperator === void 0) { Seperator = ":"; }
+    var TimeTable = [
+        ["6:45", "7:30"],
+        ["7:30", "8:15"],
+        ["8:25", "9:10"],
+        ["9:20", "10:05"],
+        ["10:15", "11:00"],
+        ["11:00", "11:45"],
+        ["12:30", "13:15"],
+        ["13:15", "14:00"],
+        ["14:10", "14:55"],
+        ["15:05", "15:50"],
+        ["16:00", "16:45"],
+        ["16:45", "17:30"],
+        ["17:45", "18:30"],
+        ["18:30", "19:15"]
+    ];
+    if (Period &lt; 1 || Period > 14) {
+        var error = new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Tiết học chỉ hợp lệ từ 1 tới 14");
+        throw error;
+    }
+    if (Seperator === null) {
+        Seperator = ":";
+    }
+    if (Start === null) {
+        Start = true;
+    }
+    // Trích ra thời gian bắt đầu/kết thúc từ bảng hằng Thời khóa biểu
+    return TimeTable[Period][Start ? 0 : 1].replace(":", Seperator);
+}
+/**
+ * Chuyển đổi từ email thành mã số sinh viên
+ * @customfunction HUST.Email2MaSo
+ * @param {string} Email HUST của sinh viên. Ví dụ dat.hdt20121987@sis.hust.edu.vn
+ * @returns {number} MaSoSinhVien Mã số SV do trường cấp. Bỏ trống nếu là giảng viên. Ví dụ 20202987.
+ * @example =Email2MaSo("dat.hdt121987@sis.hust.edu.vn") = 20121987
+ * @helpurl https://mycel.app/help/Email2MaSo.html
+ * @throws {invalidValue} gia trì đầu vào không phải là email sinh viên
+ * @interface
+ */
+function Email2MaSo(email) {
+    // Xác định vị trí của kí tự @
+    var PosOfAt;
+    PosOfAt = email.indexOf("@");
+    if (PosOfAt &lt; 0) {
+        throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Không phải email hợp lệ");
+    }
+    // Nếu không đủ độ dài 6 số thì cũng không hợp lệ
+    if (PosOfAt &lt; 6) {
+        throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Thông tin trích xuất mã số sinh viên không phù hợp");
+    }
+    // trích xuất 6 kí tự tiềm năng là MSSV
+    var suspects;
+    suspects = email.substring(PosOfAt - 6, PosOfAt);
+    var result;
+    result = Number(suspects);
+    if (result === NaN) {
+        throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidNumber, "Mã số sinh viên phải có dạng số nguyên 8 chữ số");
+    }
+    return result + 20000000;
+}
+module.exports.Email2MaSo = Email2MaSo;
+/**
+ * Chuyển đổi số nguyên trong hệ thập phân về hệ nhị phân. Hỗ trợ số CÓ DẤU như -307
+ * @customfunction MATH.DEC2BIN2
+ * @param {number} Number Số nguyên cần chuyển đổi
+ * @param {number} [BitNum] Số bit nhị phân dùng để biểu diễn, &lt;32. Mặc định bằng 8
+ * @param {boolean} [Sign]  Kiểu số nguyên. Mặc định = true là số có dấu
+ * @returns {string}  Chuỗi biểu diễn giá trị ở hệ nhị phân
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#DEC2BIN2
+ */
+function Dec2Bin2(Number, BitNum, Sign) {
+    var DoDaiBit;
+    DoDaiBit = BitNum === null ? 8 : BitNum;
+    var CoDau;
+    CoDau = Sign === null ? true : Sign;
+    console.log("Number = %d; DoDaiBit = %i, CoDau = %s", Number, DoDaiBit, CoDau);
+    if (DoDaiBit >= 32) {
+        var error = new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Số bit phải &lt; 32");
+        throw error;
+    }
+    /// Kiểm tra điều kiện phạm vi biểu diễn
+    var UpperBoundary;
+    var LowerBoundary;
+    if (CoDau) {
+        UpperBoundary = 1 &lt;&lt; (DoDaiBit - 1);
+        LowerBoundary = -UpperBoundary;
+        UpperBoundary = UpperBoundary - 1;
+    }
+    else {
+        UpperBoundary = (1 &lt;&lt; DoDaiBit) - 1;
+        LowerBoundary = 0;
+    }
+    if (Number &lt; LowerBoundary || Number > UpperBoundary) {
+        return "Out of range [" + LowerBoundary + "," + UpperBoundary + "]";
+    }
+    /// Chuyển ra hệ nhị phân
+    var res;
+    if (Number >= 0) {
+        res = Number.toString(2).padStart(DoDaiBit, "0");
+    }
+    else {
+        // Tìm ra số tương ứng
+        var InvNum = (1 &lt;&lt; DoDaiBit) + Number;
+        // Bù 2
+        res = InvNum.toString(2).padStart(DoDaiBit, "0");
+    }
+    return res;
+}
+/**
+ * Displays the current time once a second.
+ * @customfunction
+ * @param invocation Custom function handler
+ */
+function clock(invocation) {
+    var timer = setInterval(function () {
+        var time = currentTime();
+        invocation.setResult(time);
+    }, 1000);
+    invocation.onCanceled = function () {
+        clearInterval(timer);
+    };
+}
+exports.clock = clock;
+/**
+ * Returns the current time.
+ * @returns String with the current time formatted for the current locale.
+ */
+function currentTime() {
+    return new Date().toLocaleTimeString();
+}
+exports.currentTime = currentTime;
+/**
+ * Increments a value once a second.
+ * @customfunction
+ * @param incrementBy Amount to increment
+ * @param invocation Custom function handler
+ */
+function increment(incrementBy, invocation) {
+    var result = 0;
+    var timer = setInterval(function () {
+        result += incrementBy;
+        invocation.setResult(result);
+    }, 1000);
+    invocation.onCanceled = function () {
+        clearInterval(timer);
+    };
+}
+exports.increment = increment;
+/**
+ * Writes a message to console.log().
+ * @customfunction LOG
+ * @param message String to write.
+ * @returns String to write.
+ */
+function logMessage(message) {
+    console.log(message);
+    return message;
+}
+exports.logMessage = logMessage;
+/**
+ *  Trả về kết quả ở dạng dòng
+ * @customfunction
+ */
+function Demo_Row() {
+    return [["abc", "34fd"]];
+}
+/**
+ *  Trả về kết quả ở dạng cột
+ * @customfunction
+ */
+function Demo_Column() {
+    var res = [];
+    res[0] = [10];
+    res[1] = [15];
+    res[2] = [20];
+    res[3] = [25];
+    res[4] = [30];
+    return res;
+}
+/**
+ *  Viết số thành chữ
+ * @customfunction
+ * @param {number} Mount Chữ số. Ví dụ 123456
+ * @param {string} [Unit]  Đơn vị. Mặc định trống. Ví dụ 'đồng'
+ * @returns {string} Viết bằng chữ
+ * @example =BangChu(123456)=một trăm hai mươi ba nghìn bốn trăm năm mươi sáu
+ * @helpurl https://mycel.app/help/BangChu.html
+ * @mixin
+ */
+function BangChu(Mount, Unit) {
+    if (Unit === void 0) { Unit = null; }
+    var Hang = ["", "nghìn", "triệu", "tỷ", "nghìn tỷ", "triệu tỷ", "tỷ tỷ"];
+    var money;
+    var A = [];
+    var group = 0;
+    var Remain = Mount;
+    do {
+        money = Remain % 1000;
+        Remain = Math.trunc(Remain / 1000);
+        if (Remain == 0) {
+            A.push(BangChuXXX(money) + (group !== 0 ? " " + Hang[group] : ""));
+        }
+        else {
+            if (money > 0) {
+                A.push((money &lt; 100 ? "không trăm " : "") +
+                    (money &lt; 10 ? "linh " : "") +
+                    BangChuXXX(money) +
+                    (group > 0 ? " " + Hang[group] : ""));
+            }
+            else {
+                if (A.length > 0)
+                    A.push("không " + Hang[group]);
+            }
+        }
+        group++;
+    } while (Remain > 0);
+    var res = A.pop();
+    while (group > 0) {
+        group--;
+        var tmp = A.pop();
+        if (tmp === undefined)
+            break;
+        res = res + " " + tmp;
+    }
+    return res + (Unit === null ? "" : " " + Unit);
+}
+function BangChuXXX(Mount) {
+    var ChuSo1 = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười"];
+    var ChuSo2 = ["linh", "mười", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+    var ChuSo3 = ["", "mốt", "hai", "ba", "bốn", "lăm", "sáu", "bảy", "tám", "chín"];
+    var Tram = Math.trunc(Mount / 100);
+    var Chuc = Math.trunc((Mount - Tram * 100) / 10);
+    var DonVi = Mount % 10;
+    if (Mount &lt;= 10)
+        return ChuSo1[Mount];
+    //không--> chín
+    else if (Mount === 11)
+        return "mười một";
+    //mười một
+    else if (Mount &lt; 20)
+        return ChuSo1[10] + " " + ChuSo3[DonVi];
+    //mười hai --> mười chín
+    else if (Mount &lt; 100) {
+        if (DonVi === 0)
+            return ChuSo1[Chuc] + " mươi";
+        //hai mươi, ba mươi --> chín mươi
+        else
+            return ChuSo1[Chuc] + " mươi " + ChuSo3[DonVi]; //hai mươi mốt --> chín mươi chín
+    }
+    else {
+        if (Chuc === 0) {
+            if (DonVi === 0)
+                //x00
+                return ChuSo1[Tram] + " trăm";
+            //một trăm --> chín trăm
+            //x0x
+            else
+                return ChuSo1[Tram] + " trăm " + ChuSo2[Chuc] + " " + ChuSo1[DonVi]; //một trăm linh  một --> chín trăm linh chín
+        }
+        else {
+            if (DonVi === 0)
+                //xx0
+                return ChuSo1[Tram] + " trăm " + ChuSo2[Chuc] + (Chuc === 1 ? "" : " mươi");
+            //một trăm mười --> chín trăm chín mươi
+            //xxx
+            else if (Chuc === 1 &amp;&amp; DonVi === 1)
+                return ChuSo1[Tram] + " trăm " + "mười một";
+            else
+                return ChuSo1[Tram] + " trăm " + ChuSo2[Chuc] + (Chuc === 1 ? "" : " mươi") + " " + ChuSo3[DonVi]; //một trăm mười một --> chín trăm chín mươi chín
+        }
+    }
+}
+/**
+ *  Tính thuế thu nhập cá nhân theo năm
+ * @customfunction
+ * @param {number} Salary Phần lương chịu thuế trong cả năm, sau khi đã miễn trừ. Ví dụ 307000000
+ * @param {number} SelfDeduction Giảm trừ bản thân. =1 tiền thuế sẽ được tính giảm trừ bản thân. =0 nếu số tiền lương trên không tính miễn trừ bản thân.
+ * @param {number} DependentNum Số lượng người phụ thuộc. Ví dụ 0, 3.
+ * @returns {number} Tiền thuế cần nộp
+ * @example =ThueThuNhapCaNhan(307000000,1,2)=36320000
+ * @helpurl https://mycel.app/help/ThueThuNhapCaNhan.html
+ * @mixin
+ */
+function ThueThuNhapCaNhan(Salary, SelfDeduction, DependentNum) {
+    var acc = 0;
+    // Trả kết quả tổng lượng thuế của tất cả các bậc
+    return ThueThuNhapCaNhanTheoBac(Salary, SelfDeduction, DependentNum, true, false)[0].reduce(function (acc, TaxOfStep) { return acc + TaxOfStep; });
+    return 1;
+}
+/**
+ *  Tính thuế thu nhập cá nhân theo năm. Cách tính: áp dụng bảng thuế suất cá nhân lên mức lương chịu thuế là (Salary - SelfDeductionTax - DependentTax)
+ *  Trường hợp cần tính theo tháng, hãy nhập công thức &lt;Tên hàm>/12 thì tất cả các cell kết quả sẽ đồng loạt chia đều cho 12 tháng.
+ * @customfunction
+ * @param {number} Salary Phần lương thu nhập trong cả năm, chưa  miễn trừ gia cảnh. Ví dụ 307000000
+ * @param {number} SelfDeduction Giảm trừ bản thân. =1 tiền thuế sẽ được tính giảm trừ bản thân. =0 nếu số tiền lương trên không tính miễn trừ bản thân.
+ * @param {number} DependentNum Số lượng người phụ thuộc. Ví dụ 0, 3.
+ * @param {boolean} RowColumn Hiển thị ở dạng dòng (true, mặc định) hoặc cột (false)
+ * @param {boolean} ShowTotal Hiển thị tổng số tiền thuế. Mặc định true.
+ * @returns {number[][]} Tiền thuế cần nộp chi tiết ở mỗi bậc thuế
+ * @example =ThueThuNhapCaNhanTheoBac(307000000,1,2)=[3000000, 6000000, 14400000, 18200000,0, 0,0]
+ * @helpurl https://mycel.app/help/ThueThuNhapCaNhanTheoBac.html
+ * @mixin
+ */
+function ThueThuNhapCaNhanTheoBac(Salary, SelfDeduction, DependentNum, RowColumn, ShowTotal) {
+    if (RowColumn === void 0) { RowColumn = true; }
+    if (ShowTotal === void 0) { ShowTotal = true; }
+    var list;
+    /// Bảng thuế suất được sử dụng trong các tính toán thuế. Mặc định là mới nhất.
+    list = ThueSuatCaNhan.SelectThueSuat(0);
+    /// Phần thuế cần phải tìm
+    var Tax = 0;
+    var TaxPerStep = [];
+    if (ShowTotal === null)
+        ShowTotal = true;
+    // Phân tiền lương còn phải đóng thuế ở bậc tiếp theo
+    var SalaryRemain = Salary -
+        12 *
+            (SelfDeduction * GiamTruGiaCanh(TaxDeductionType.BanThan) +
+                DependentNum * GiamTruGiaCanh(TaxDeductionType.PhuThuoc));
+    for (var index = 1; index &lt; list.length; index++) {
+        if (SalaryRemain > list[index][0]) {
+            //Thuế phải nộp = phần chênh giữa 2 bậc nhân với thuế suất
+            TaxPerStep[index - 1] = (list[index][0] - list[index - 1][0]) * list[index][1];
+            if (TaxPerStep[index - 1] &lt; 0)
+                TaxPerStep[index - 1] = 0;
+            Tax += TaxPerStep[index - 1];
+        }
+        else {
+            //Thuế phải nộp = phần chệnh giữa 2 bậc nhân với thuế suất
+            TaxPerStep[index - 1] = (SalaryRemain - list[index - 1][0]) * list[index][1];
+            Tax += TaxPerStep[index - 1];
+            //Gan phần còn lại về 0
+            for (index++; index &lt; list.length; index++) {
+                TaxPerStep[index - 1] = 0;
+            }
+            break;
+        }
+    }
+    // Trả kết quả về hàm
+    var res = [];
+    if (RowColumn === null || RowColumn) {
+        res[0] = TaxPerStep;
+        if (ShowTotal) {
+            res[0].push(Tax);
+        }
+    }
+    else {
+        //chuyển dòng thành cột
+        TaxPerStep.forEach(function (element, index) {
+            res[index] = [element];
+        });
+        if (ShowTotal) {
+            res.push([Tax]);
+        }
+    }
+    return res;
+}
+/**
+ *  Số tiền được giảm trừ gia cảnh
+ * @customfunction
+ * @param {TaxDeductionType} type Loại gia cảnh. 0 = Bản thân; 1 = Phụ thuộc
+ * @returns {number} Số tiền miễn trừ
+ * @example  =GiamTruGiaCanh(0) =11000000
+ * @helpurl https://mycel.app/help/GiamTruGiaCanh.html
+ * @mixin
+ */
+function GiamTruGiaCanh(type) {
+    switch (type) {
+        case TaxDeductionType.BanThan:
+            return 11000000;
+        case TaxDeductionType.PhuThuoc:
+            return 4400000;
+    }
+}
+/**
+ *  Hiện bảng thuế suất theo năm, gồm 2 cột và nhiều dòng. Mõi dòng tương ứng với mức thuế
+ * @customfunction
+ * @returns {string[][]} Bảng thuế suất mới nhất theo thông tư 111/2013 của Bộ tài chính
+ * @example =BangThueSuat()=
+ *         0: (2) [60000000, 0.05]
+ *         1: (2) [120000000, 0.1]
+ *         2: (2) [216000000, 0.15]
+ *         3: (2) [384000000, 0.2]
+ *         4: (2) [624000000, 0.25]
+ *         5: (2) [960000000, 0.3]
+ *         6: (2) [Infinity, 0.35]
+ * @helpurl https://mycel.app/help/BangThueSuat.html
+ * @mixin
+ */
+function BangThueSuat() {
+    var res;
+    /// Chuyển đổi về dạng mảng 2 chiều
+    res = ThueSuatCaNhan.SelectThueSuat(0);
+    /// Trong đó loại đi Bậc 0
+    res = res.slice(1);
+    // Trả kết quả về hàm
+    return res;
+}
+/// &lt;summary>
+///     Bảng thuế suất dành cho cá nhân
+/// &lt;/summary>
+var ThueSuatCaNhan = /** @class */ (function () {
+    function ThueSuatCaNhan() {
+    }
+    /**
+     * Trả về bảng thuế suất
+     * @param version Phiên bản của thông tư, nghị định. Bỏ qua
+     */
+    ThueSuatCaNhan.SelectThueSuat = function (version) {
+        if (version === void 0) { version = null; }
+        return this.list_TT1112013;
+    };
+    /// &lt;summary>
+    ///     Bảng thuế suất biểu luỹ tiến từng phần, theo thông tư 111/2013 của Bộ tài chính
+    /// &lt;/summary>
+    ThueSuatCaNhan.list_TT1112013 = [
+        /// Bảng thuế suất được sử dụng trong các tính toán thuế. Mặc định là mới nhất.
+        //Cho đến, thuế suất
+        [0, 0],
+        [60 * 1000000, 0.05],
+        [120 * 1000000, 0.1],
+        [216 * 1000000, 0.15],
+        [384 * 1000000, 0.2],
+        [624 * 1000000, 0.25],
+        [960 * 1000000, 0.3],
+        [Number.POSITIVE_INFINITY, 0.35]
+    ];
+    return ThueSuatCaNhan;
+}());
+/**
+ *  Các kiểu giảm trừ gia cảnh
+ * @module
+ * */
+var TaxDeductionType;
+(function (TaxDeductionType) {
+    /**
+     * Giảm trừ cho bản thân người nộp thuế
+     */
+    TaxDeductionType[TaxDeductionType["BanThan"] = 0] = "BanThan";
+    /**
+     * Giảm trừ cho người phụ thuộc vào người nộp thuế. Ví dụ con cái, bố mẹ
+     */
+    TaxDeductionType[TaxDeductionType["PhuThuoc"] = 1] = "PhuThuoc";
+})(TaxDeductionType || (TaxDeductionType = {}));
+module.exports.BangChu = BangChu;
+module.exports.BangChuXXX = BangChuXXX;
+module.exports.ThueThuNhapCaNhan = ThueThuNhapCaNhan;
+/**
+ * Returns author's name and ID in 4 cells
+ * @customfunction
+ * @param {string} nameAndID - The author's name and ID
+ * @returns {string[][]} The name and ID of author separatedly
+ * @example =TacGia("Phan Dinh Tuong 20164582") =
+ *          [[Phan,Dinh],[Tuong,20164582]]
+ */
+function TacGia(nameAndID) {
+    if (Number(nameAndID))
+        //the input is only number
+        return [["ERROR: input only number"]];
+    var splitted = nameAndID.split(" "); //split input by spaces
+    if (splitted.length &lt;= 1)
+        // input length is not enough
+        return [["ERROR: input length &lt;=1"]];
+    var authorID = splitted.pop(); // pop the last element / author's ID
+    if (isNaN(Number(authorID)))
+        //author's ID is not number
+        return [["ERROR: input wrong ID (not number)"]];
+    var authorName = splitted; //get fullname array
+    if (authorName.length == 1)
+        //input only last name
+        return [["ERROR: only one in name, please input fullname"]];
+    for (var _i = 0, authorName_1 = authorName; _i &lt; authorName_1.length; _i++) {
+        var entry = authorName_1[_i];
+        //check if name array contains number
+        if (!isNaN(Number(entry)))
+            return [["ERROR: number inside name"]];
+    }
+    var lastNameArray = authorName.pop(); //get last name array
+    var lastName = lastNameArray.toString(); //last name in string type
+    var firstName;
+    if (authorName.length == 1) {
+        //the remain name is one left / only first name, no middle name
+        firstName = authorName[0].toString();
+        return [
+            [firstName, ""],
+            [lastName, authorID]
+        ]; //this author has no middle name
+    }
+    //get first name, middle name
+    var firstNameArray = authorName[0]; //get first name in array type
+    firstName = firstNameArray.toString(); //first name in string type
+    authorName.shift(); //shift to the left / remove first name in array
+    var middleName = authorName.join(" "); // get middle name in string
+    return [
+        [firstName, middleName],
+        [lastName, authorID]
+    ];
+}
+exports.TacGia = TacGia;
+/**
+ * Lấy tỷ giá hối đoái ngoại tệ và vnđ theo niêm yết tại portal.vietcombank.com.vn
+ * @customfunction
+ * @param {string} currency Mã ngoại tệ, vd: "USD"
+ * @param {string} type Loại tỷ giá, vd: "Mua"
+ * @param {string} date Ngày lấy tỷ giá, để trống = hôm nay
+ * @param {CustomFunctions.StreamingInvocation&lt;string>} invocation Invocation for updating cell's value, as a return
+ * @example =TyGia("usd","buy","24/04/2021")=22,945.00
+ */
+function TyGia(currency, type, date, invocation) {
+    if (date === void 0) { date = ""; }
+    return __awaiter(this, void 0, void 0, function () {
+        var moment, exchangeDate, today, url, xhttp;
+        return __generator(this, function (_a) {
+            // Loại ngoại tệ
+            currency = currency.toUpperCase();
+            if (currency == "VND") {
+                invocation.setResult("1"); // Vietnam Dong
+                return [2 /*return*/];
+            }
+            if (!(currency == "AUD" ||
+                currency == "CAD" ||
+                currency == "CHF" ||
+                currency == "CNY" ||
+                currency == "DKK" ||
+                currency == "EUR" ||
+                currency == "GBP" ||
+                currency == "HKD" ||
+                currency == "INR" ||
+                currency == "JPY" ||
+                currency == "KRW" ||
+                currency == "KWD" ||
+                currency == "MYR" ||
+                currency == "NOK" ||
+                currency == "RUB" ||
+                currency == "SAR" ||
+                currency == "SEK" ||
+                currency == "SGD" ||
+                currency == "THB" ||
+                currency == "USD")) {
+                invocation.setResult("Unknown currency");
+                return [2 /*return*/];
+            }
+            // Loại ngày lấy tỷ giá
+            if (date != "") {
+                moment = require("moment");
+                exchangeDate = moment(date, "DD/MM/YYYY", true);
+                today = moment();
+                if (isNaN(exchangeDate)) {
+                    invocation.setResult("Invalid date");
+                    return [2 /*return*/];
+                }
+                else if (exchangeDate > today) {
+                    invocation.setResult("Out of date");
+                    return [2 /*return*/];
+                }
+                else {
+                    date = exchangeDate.format("DDMMYYYY");
+                }
+            }
+            // Loại tỷ giá mua/bán
+            type = type.toUpperCase();
+            if (type == "MUA" || type == "BUY")
+                type = "Buy";
+            else if (type == "BÁN" || type == "SELL")
+                type = "Sell";
+            else if (type == "CHUYỂN KHOẢN" || type == "TRANSFER")
+                type = "Transfer";
+            else {
+                invocation.setResult("Unknown type");
+                return [2 /*return*/];
+            }
+            url = "https://mycel.app:64000/crawlTyGia?currency=" + currency + "&amp;type=" + type + "&amp;date=" + date;
+            xhttp = new XMLHttpRequest();
+            return [2 /*return*/, new Promise(function (resolve, reject) {
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState !== 4)
+                            return;
+                        if (xhttp.status == 200) {
+                            // resolve(JSON.parse(xhttp.responseText).result);
+                            invocation.setResult(JSON.parse(xhttp.responseText).result);
+                        }
+                        else {
+                            reject({
+                                status: xhttp.status,
+                                statusText: xhttp.statusText
+                            });
+                            invocation.setResult("Request was rejected");
+                        }
+                    };
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+                })];
+        });
+    });
+}
+exports.TyGia = TyGia;
+/**
+ * Return input text and change background color
+ * @customfunction
+ * @param {string} text Input text
+ * @param {string} cellBackgroundColor Background color of cell to be applied, ex: "red"
+ * @param {CustomFunctions.Invocation} invocation Invocation object to get current cell
+ * @requiresAddress
+ * @returns Input text and change background color
+ * @example =StringCellFormatter("Tuong","red")=Tuong
+ */
+function StringCellFormatter(text, cellBackgroundColor, invocation) {
+    var address = invocation.address; //get address of the invocation / current cell, eg: Sheet1!A4
+    var addressWithoutSheet = address.split("!")[1]; //split to get address without sheet
+    Excel.run(function (context) {
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var range = sheet.getRange(addressWithoutSheet);
+        range.select();
+        range.format.fill.color = cellBackgroundColor;
+        return context.sync();
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+    return text;
+}
+exports.StringCellFormatter = StringCellFormatter;
+/**
+ * Return the input text and change the font type, font size, font color
+ * @customfunction
+ * @param {string} text Input text
+ * @param {string} fontName Font name
+ * @param {number} fontSize Font size
+ * @param {string} fontColor Font color
+ * @param {CustomFunctions.Invocation} invocation Invocation object to get current cell
+ * @requiresAddress
+ * @returns Input text
+ * @example =StringFontFormatter("Tuong","Arial",30,"blue")=Tuong
+ */
+function StringFontFormatter(text, fontName, fontSize, fontColor, invocation) {
+    var address = invocation.address; //get address of the invocation / current cell, eg: Sheet1!A4
+    var addressWithoutSheet = address.split("!")[1]; //split to get address without sheet
+    Excel.run(function (context) {
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var range = sheet.getRange(addressWithoutSheet);
+        range.select();
+        range.format.font.name = fontName; //eg 'Times New Roman'
+        range.format.font.color = fontColor;
+        range.format.font.size = fontSize;
+        return context.sync();
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+    return text;
+}
+exports.StringFontFormatter = StringFontFormatter;
+/**
+ * Generate QR code from text
+ * @customfunction
+ * @param {string} text Context of QR code
+ * @param {string} ShapeName Name of the shape will be filled with QR code
+ * @param {CustomFunctions.Invocation} invocation Invocation object to get current cell
+ * @requiresAddress
+ */
+function QRCode(text, ShapeName, invocation) {
+    Excel.run(function (context) {
+        // request to WebAPI / must start WebAPI first
+        // const url = "http://127.0.0.1:10010/qrcode?text=" + text;
+        var url = "https://mycelwebapi.vimoitruong.xyz/qrcode?text=" + text;
+        var xhttp = new XMLHttpRequest();
+        return new Promise(function (resolve, reject) {
+            xhttp.onreadystatechange = function () {
+                return __awaiter(this, void 0, void 0, function () {
+                    var result, address, addressWithoutSheet, sheet, range, shapes, myShape;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (xhttp.readyState !== 4)
+                                    return [2 /*return*/];
+                                if (!(xhttp.status == 200)) return [3 /*break*/, 3];
+                                result = JSON.parse(xhttp.responseText).result;
+                                result = result.substring(22); //get substring from index 22 to avoid 'data:image/png;base64,'
+                                address = invocation.address;
+                                addressWithoutSheet = address.split("!")[1];
+                                sheet = context.workbook.worksheets.getActiveWorksheet();
+                                range = sheet.getRange(addressWithoutSheet);
+                                range.select();
+                                range.load(["left", "top", "height", "width"]); // load left, top, height, width of the cell to place QR code image
+                                return [4 /*yield*/, context.sync()];
+                            case 1:
+                                _a.sent(); //always call sync after loading
+                                shapes = context.workbook.worksheets.getActiveWorksheet().shapes;
+                                myShape = sheet.shapes.addImage(result);
+                                myShape.name = ShapeName;
+                                //placement: two cell: shape is moved with the cell.
+                                //left, top, height, width: properties of the cell that the shape follows
+                                myShape.set({
+                                    placement: "TwoCell",
+                                    left: range.left,
+                                    top: range.top,
+                                    height: range.height,
+                                    width: range.width
+                                });
+                                // }else{
+                                // }
+                                // var j = shapes.getCount();
+                                // // var stemp[j]
+                                // context.sync();
+                                // console.log("Sss");
+                                // console.log(j.value);
+                                // var i, stemp;
+                                // for (i = 0; i &lt; j.value; i++) {
+                                //   stemp = shapes.getItemAt(i);
+                                //   stemp.load("name");
+                                //   context.sync();
+                                //   console.log(i);
+                                //   if (stemp.name == "newImage") {
+                                //     context.sync();
+                                //     console.log("yes");
+                                //   } else {
+                                //     console.log("no");
+                                //   }
+                                // }
+                                //var image = sheet.shapes.addImage(result);
+                                //TODO: find shape by name and fill
+                                //console.log(result);
+                                //image.name = "image";
+                                //streamingInvocation.setResult(text);
+                                //return JSON.parse(xhttp.responseText).result;
+                                return [4 /*yield*/, context.sync()];
+                            case 2:
+                                // }else{
+                                // }
+                                // var j = shapes.getCount();
+                                // // var stemp[j]
+                                // context.sync();
+                                // console.log("Sss");
+                                // console.log(j.value);
+                                // var i, stemp;
+                                // for (i = 0; i &lt; j.value; i++) {
+                                //   stemp = shapes.getItemAt(i);
+                                //   stemp.load("name");
+                                //   context.sync();
+                                //   console.log(i);
+                                //   if (stemp.name == "newImage") {
+                                //     context.sync();
+                                //     console.log("yes");
+                                //   } else {
+                                //     console.log("no");
+                                //   }
+                                // }
+                                //var image = sheet.shapes.addImage(result);
+                                //TODO: find shape by name and fill
+                                //console.log(result);
+                                //image.name = "image";
+                                //streamingInvocation.setResult(text);
+                                //return JSON.parse(xhttp.responseText).result;
+                                _a.sent();
+                                return [3 /*break*/, 4];
+                            case 3:
+                                reject({
+                                    status: xhttp.status,
+                                    statusText: xhttp.statusText
+                                });
+                                console.log("Request was rejected");
+                                _a.label = 4;
+                            case 4: return [2 /*return*/];
+                        }
+                    });
+                });
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        });
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+    return text;
+}
+exports.QRCode = QRCode;
+/**
+ * Speak the input integer number in Vietnamese
+ * @customfunction
+ * @param {number} number Integer number to be spoken
+ * @returns {string} Integer number in text
+ * @example =NumberToSpeech(12)=Mười hai
+ */
+function NumberToSpeech(number) {
+    return NumberToSpeechGeneral(number, 3);
+}
+exports.NumberToSpeech = NumberToSpeech;
+/**
+ * Integer number to text in Vietnamese
+ * @customfunction
+ * @param {number} number Integer number to text
+ * @returns {string} Integer number in text
+ * @example =NumberToText(12)=Mười hai
+ */
+function NumberToText(number) {
+    return NumberToSpeechGeneral(number, 4);
+}
+exports.NumberToText = NumberToText;
+/**
+ * Decimal number to speech in Vietnamese
+ * @customfunction
+ * @param {number} number Decimal number to be spoken
+ * @returns {string} Decimal number in text
+ * @example =DecimalToSpeech(12.7)=Mười hai phẩy bẩy
+ */
+function DecimalToSpeech(number) {
+    return NumberToSpeechGeneral(number, 1);
+}
+exports.DecimalToSpeech = DecimalToSpeech;
+/**
+ * Decimal number to text in Vietnamese
+ * @customfunction
+ * @param {number} number Decimal number to text
+ * @returns {string} Decimal number in text
+ * @example =DecimalToText(12.7)=Mười hai phẩy bẩy
+ */
+function DecimalToText(number) {
+    return NumberToSpeechGeneral(number, 2);
+}
+exports.DecimalToText = DecimalToText;
+/**
+ * General number to speech function, only for other functions, not usable by end user
+ * @param {number} number Input number
+ * @param {number} option Option to output: 1. Decimal to speech, 2. Decimal to text, 3. Integer to speech, 4. Integer to text
+ * @returns {string} Number in text
+ */
+function NumberToSpeechGeneral(number, option) {
+    console.log(typeof number);
+    console.log(number);
+    var chuSo = [" không", " một", " hai", " ba", " bốn", " năm", " sáu", " bẩy", " tám", " chín"];
+    var audioChuSo = [
+        new Audio("../../sound/0.wav"),
+        new Audio("../../sound/1.wav"),
+        new Audio("../../sound/2.wav"),
+        new Audio("../../sound/3.wav"),
+        new Audio("../../sound/4.wav"),
+        new Audio("../../sound/5.wav"),
+        new Audio("../../sound/6.wav"),
+        new Audio("../../sound/7.wav"),
+        new Audio("../../sound/8.wav"),
+        new Audio("../../sound/9.wav")
+    ];
+    var tien = [" GH", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"];
+    var audioTien = [
+        new Audio("../../sound/GolfHit.wav"),
+        new Audio("../../sound/nghin.wav"),
+        new Audio("../../sound/trieu.wav"),
+        new Audio("../../sound/ty.wav"),
+        new Audio("../../sound/nghinTy.wav"),
+        new Audio("../../sound/trieuTy.wav")
+    ];
+    var biggestNumber = 8999999999999999;
+    var lan, i, so, ketqua = "", tmp = "";
+    var vitri = new Array(6);
+    var sounds = new Array();
+    var soundIndex = -1;
+    if (typeof number != "number") {
+        console.log("check number: not number");
+    }
+    else {
+        console.log("check number: number");
+        if (number == 0) {
+            console.log("number == 0");
+            sounds.push(audioChuSo[0]);
+            sounds.push(audioTien[0]);
+            ketqua += chuSo[0];
+        }
+        if (number > 0) {
+            console.log("number > 0");
+            so = number;
+        }
+        else {
+            console.log("number &lt;0");
+            so = -number;
+        }
+        if (number > biggestNumber) {
+            return "";
+        }
+        var decimalPart = so;
+        decimalPart = decimalPart - Math.floor(decimalPart);
+        console.log("decimalPart be4 = " + decimalPart);
+        decimalPart = Math.round((decimalPart + Number.EPSILON) * 10000) / 10000;
+        console.log("decimalPart aft = " + decimalPart);
+        var decimalPartInString = decimalPart.toString();
+        decimalPartInString = decimalPartInString.substring(2);
+        console.log("decimalPartInString = " + decimalPartInString);
+        if ((option == 3 || option == 4) &amp;&amp; decimalPartInString != "") {
+            if (option == 3) {
+                sounds.push(new Audio("../../sound/integerError.wav"));
+                playSnd();
+            }
+            ketqua += "Lỗi số nguyên";
+            return ketqua.substring(0, 1).toUpperCase() + ketqua.substring(1);
+        }
+        // decimalPart = parseInt(decimalPartInString);
+        // console.log("decimalPart after transform = "+decimalPart);
+        so = Math.floor(so); // get integer part
+        vitri[5] = Math.floor(so / 1000000000000000);
+        console.log("vitri[5] = " + vitri[5]);
+        so -= vitri[5] * 1000000000000000;
+        vitri[4] = Math.floor(so / 1000000000000);
+        console.log("vitri[4] = " + vitri[4]);
+        so -= vitri[4] * 1000000000000;
+        vitri[3] = Math.floor(so / 1000000000);
+        console.log("vitri[3] = " + vitri[3]);
+        so -= vitri[3] * 1000000000;
+        vitri[2] = Math.floor(so / 1000000);
+        console.log("vitri[2] = " + vitri[2]);
+        vitri[1] = Math.floor((so % 1000000) / 1000);
+        console.log("vitri[1] = " + vitri[1]);
+        vitri[0] = so % 1000;
+        console.log("vitri[0] = " + vitri[0]);
+        if (vitri[5] > 0) {
+            lan = 5;
+        }
+        else if (vitri[4] > 0) {
+            lan = 4;
+        }
+        else if (vitri[3] > 0) {
+            lan = 3;
+        }
+        else if (vitri[2] > 0) {
+            lan = 2;
+        }
+        else if (vitri[1] > 0) {
+            lan = 1;
+        }
+        else {
+            lan = 0;
+        }
+        console.log("lan = " + lan);
+        for (i = lan; i >= 0; i--) {
+            console.log("i in for = " + i);
+            tmp = docSo3ChuSo(vitri[i]);
+            console.log("tmp = " + tmp);
+            ketqua += tmp;
+            console.log("ketqua inside for loop lan= " + ketqua);
+            if (vitri[i] != 0 &amp;&amp; i != 0) {
+                // if (i == 0 &amp;&amp; ketqua.substring(ketqua.length - 1) == ",") ketqua = ketqua.substring(0, ketqua.length - 1);
+                ketqua += tien[i];
+                sounds.push(audioTien[i]);
+            }
+            console.log("ketqua before adding , = " + ketqua);
+            if (i > 0 &amp;&amp; tmp != "")
+                ketqua += ",";
+            console.log("ketqua = after adding , = " + ketqua);
+        }
+        //console.log("ketqua.substring(ketqua.length - 1) = " + ketqua.substring(ketqua.length - 1));
+        if (ketqua.substring(ketqua.length - 1) == ",")
+            ketqua = ketqua.substring(0, ketqua.length - 1);
+        ketqua = ketqua.trim();
+        if (number &lt; 0) {
+            ketqua = "âm " + ketqua;
+            sounds.unshift(new Audio("../../sound/am.wav"));
+        }
+        console.log("ketqua after add - = " + ketqua);
+        // var audio = new Audio("../../sound/0.wav");
+        // var audio2 = new Audio("../../sound/1.wav");
+        //add decimal part
+        if (option == 1 || option == 2) {
+            if (decimalPartInString != "") {
+                ketqua += " phẩy";
+                sounds.push(new Audio("../../sound/phay.wav"));
+                ketqua += docSo(decimalPartInString);
+            }
+        }
+        // sounds.push(audio);
+        // sounds.push(audio2);
+        // sounds.push(audio);
+        //console.log("sounds.length outside func = " + sounds.length);
+        if (option == 1 || option == 3) {
+            playSnd();
+        }
+        return ketqua.substring(0, 1).toUpperCase() + ketqua.substring(1);
+    }
+    function docSo(num) {
+        var ketQua = "";
+        var i;
+        console.log("num.length = " + num.length);
+        for (i = 0; i &lt; num.length; i++) {
+            console.log(num.substr(i, 1));
+            switch (num.substr(i, 1)) {
+                case "0":
+                    ketQua += " không";
+                    sounds.push(audioChuSo[0]);
+                    break;
+                case "1":
+                    ketQua += " một";
+                    sounds.push(audioChuSo[1]);
+                    break;
+                case "2":
+                    ketQua += " hai";
+                    sounds.push(audioChuSo[2]);
+                    break;
+                case "3":
+                    ketQua += " ba";
+                    sounds.push(audioChuSo[3]);
+                    break;
+                case "4":
+                    ketQua += " bốn";
+                    sounds.push(audioChuSo[4]);
+                    break;
+                case "5":
+                    ketQua += " năm";
+                    sounds.push(audioChuSo[5]);
+                    break;
+                case "6":
+                    ketQua += " sáu";
+                    sounds.push(audioChuSo[6]);
+                    break;
+                case "7":
+                    ketQua += " bẩy";
+                    sounds.push(audioChuSo[7]);
+                    break;
+                case "8":
+                    ketQua += " tám";
+                    sounds.push(audioChuSo[8]);
+                    break;
+                case "9":
+                    ketQua += " chín";
+                    sounds.push(audioChuSo[9]);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return ketQua;
+    }
+    function playSnd() {
+        //console.log("sounds.length inside func = " + sounds.length);
+        soundIndex++;
+        if (soundIndex == sounds.length) {
+            return;
+        }
+        sounds[soundIndex].addEventListener("ended", playSnd);
+        sounds[soundIndex].play();
+    }
+    function docSo3ChuSo(baso) {
+        console.log("baso = " + baso);
+        var tram, chuc, donvi;
+        var ketQua = "";
+        tram = Math.floor(baso / 100);
+        console.log("tram = " + tram);
+        chuc = Math.floor((baso % 100) / 10);
+        console.log("chuc = " + chuc);
+        donvi = baso % 10;
+        console.log("donvi = " + donvi);
+        if (tram == 0 &amp;&amp; chuc == 0 &amp;&amp; donvi == 0) {
+            return "";
+        }
+        if (ketqua.substring(ketqua.length - 1) == "," || tram != 0) {
+            ketQua += chuSo[tram] + " trăm";
+            sounds.push(audioChuSo[tram]);
+            sounds.push(new Audio("../../sound/tram.wav"));
+            if (chuc == 0 &amp;&amp; donvi != 0) {
+                ketQua += " linh";
+                sounds.push(new Audio("../../sound/linh.wav"));
+            }
+        }
+        if (chuc != 0 &amp;&amp; chuc != 1) {
+            ketQua += chuSo[chuc] + " mươi";
+            sounds.push(audioChuSo[chuc]);
+            sounds.push(new Audio("../../sound/muoi.wav"));
+            if (chuc == 0 &amp;&amp; donvi != 0) {
+                ketQua += " linh";
+                sounds.push(new Audio("../../sound/linh.wav"));
+            }
+        }
+        if (chuc == 1) {
+            ketQua += " mười";
+            sounds.push(new Audio("../../sound/10.wav"));
+        }
+        switch (donvi) {
+            case 1:
+                if (chuc != 0 &amp;&amp; chuc != 1) {
+                    ketQua += " mốt";
+                    sounds.push(new Audio("../../sound/mot.wav"));
+                }
+                else {
+                    ketQua += chuSo[donvi];
+                    sounds.push(audioChuSo[donvi]);
+                }
+                break;
+            case 5:
+                if (chuc == 0) {
+                    ketQua += chuSo[donvi];
+                    sounds.push(audioChuSo[donvi]);
+                }
+                else {
+                    ketQua += " lăm";
+                    sounds.push(new Audio("../../sound/lam.wav"));
+                }
+                break;
+            default:
+                if (donvi != 0) {
+                    ketQua += chuSo[donvi];
+                    sounds.push(audioChuSo[donvi]);
+                }
+                break;
+        }
+        return ketQua;
+    }
+}
+//-------------------------------------------------------------------------------------------
+//     CÁC HÀM BIO INFORMATION
+//-------------------------------------------------------------------------------------------
+/**
+ * Xác định các vị trí RNA Pseudouridine bằng cách sử dụng Random Forest và các tính năng được mã hóa NCP.
+ * @customfunction BIO.IPseUNCP
+ * @description Xác định các vị trí RNA Pseudouridine bằng cách sử dụng Random Forest và các tính năng được mã hóa NCP.
+ *              Identifying RNA Pseudouridine sites using Random Forest and NCP-encoded features
+ * @param {string} option  H | S | M, trong đó loại H. sapiens, S. cerevisiae, M. musculus
+ * @param {string} seq    Chuỗi RNA cần nhận dạng. Ví dụ GCUAAACAGGUACUGCUGGGC
+ * @param {CustomFunctions.StreamingInvocation&lt;string>} invocation handler diểu khiển cell
+ * @returns {Promise&lt;string>}  Chuỗi RNA ban đâu, nhưng có thêm kí hiệu +/- đánh dấu vị trí nucleoit kế tiếp sẽ dương tính hoặc âm tính.
+ *           Positive (+): RNA segments has a uridine at the center position that can be pseudouridylated.
+ *           Negative (-): RNA segments has a uridine at the center position that cannot be pseudouridylated.
+ * @helpurl https://mycel.app/help/IPseUNCP.html
+ * @example =MY.IPSEUNCP("H", "GCUAAACAGGUACUGCUGGGC")=GCUAAACAGG+UACUGCUGGGC
+ * @license Prof. Nguyen Hong Quang
+ * @see     http://nguyenhongquang.edu.vn/problem-iPseU-NCP
+ * @global
+ */
+function IPseUNCP(option, seq, invocation) {
+    return __awaiter(this, void 0, void 0, function () {
+        var url, xhttp;
+        return __generator(this, function (_a) {
+            url = "https://mycel.app:64000/ipseuncp?option=" + option + "&amp;seq=" + seq;
+            console.log(url);
+            xhttp = new XMLHttpRequest();
+            return [2 /*return*/, new Promise(function (resolve, reject) {
+                    xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState !== 4)
+                            return;
+                        if (xhttp.status == 200) {
+                            invocation.setResult(xhttp.responseText);
+                            //invocation.setResult("Xong roi");
+                        }
+                        else {
+                            reject({
+                                status: xhttp.status,
+                                statusText: xhttp.statusText
+                            });
+                            invocation.setResult("Something wrong:" + xhttp.statusText);
+                        }
+                    };
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+                })];
+        });
+    });
+}
+exports.IPseUNCP = IPseUNCP;
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">tiện lợi như mơ</div>
+				<div class="copyright">Bản quyền thuộc Techlink Co Ltd.,</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tu/04/2021 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

@@ -1,0 +1,381 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>functions/dist/hust.dev.js</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #007CB7;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #007CB7;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #007CB7;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #007CB7;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"ddd, DD/MM/yyyy","systemName":"Mycel","systemSummary":"Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn","systemLogo":"img/icon-32.png","systemColor":"#007CB7","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Commands","summary":"Các command ở trên Ribbon Tab Mycel"},{"kind":"global","title":"HÀM XỬ LÝ","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"mixin","title":"HÀM TÀI CHÍNH","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"interface","title":"SOICT-HUST","summary":"Dành riêng cho Bách khoa Hà Nội."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Taskpane","summary":"Các function trong taskpane."},{"kind":"tutorial","title":"KIỂU DỮ LIỆU","summary":"các kiểu dữ liệu "}],"footer":"Tiện lợi như mơ","copyright":"Bản quyền thuộc Techlink Co Ltd.,","linenums":true,"collapseSymbols":false,"inverseNav":false,"inlineNav":true,"outputSourceFiles":false,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname","search":true,"favicon":"favicon.ico","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/icon-32.png);">
+					Mycel
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li><a href="global.html">HÀM XỬ LÝ</a></li>
+							<li><a href="list_external.html">Commands</a></li>
+							<li><a href="list_interface.html">SOICT-HUST</a></li>
+							<li><a href="list_mixin.html">HÀM TÀI CHÍNH</a></li>
+							<li><a href="list_module.html">Modules</a></li>
+							<li><a href="list_namespace.html">Taskpane</a></li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">functions/dist/hust.dev.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">"use strict";
+
+//---------------------------------------------------------------------------------------
+//  Các hàm dành riêng cho Đại học Bách Khoa Hà Nội
+//---------------------------------------------------------------------------------------
+
+/**
+ * Email HUST do nhà trường cấp cho mỗi sinh viên
+ * @customfunction HUST.EmailSinhVien
+ * @param {string} HoVaTen Họ và tên đầy đủ. Ví dụ Lê Văn Long.
+ * @param {string} MaSoSinhVien Mã số SV do trường cấp. Bỏ trống nếu là giảng viên. Ví dụ 20202987.
+ * @returns {string} Email HUST của sinh viên. Ví dụ long.lv202987@sis.hust.edu.vn
+ * @example =StudentEmail("Lê Văn Long", 20202987) =long.lv202987@sis.hus.edu.vn
+ * @helpurl https://mycel.app/help/StudentEmail.html
+ * @interface
+*/
+function StudentEmail(HoVaTen, MaSoSinhVien) {
+  var TenKhongDau = LayTenKhongDau(HoVaTen);
+  var Email;
+  var MSSV;
+  MSSV = String(MaSoSinhVien);
+
+  if (MSSV.length == 8) {
+    ///Công thức dành cho email sinh viên
+    var ChuCaiDau = nametools.LayCacChuCaiDau(TenKhongDau);
+    Email = LayTen(TenKhongDau) + '.' + ChuCaiDau.substring(0, ChuCaiDau.length - 1) + MSSV.substring(2, MSSV.length) + "@sis.hust.edu.vn";
+  } else if (MSSV == "undefined" || MSSV.length == 0) {
+    ///Công thức dành cho email giáo viên
+    Email = LayTen(TenKhongDau) + "." + LayHo(TenKhongDau) + LayDem(TenKhongDau).trim() + "@hust.edu.vn";
+  } else {
+    Email = "Mã số không hợp lệ";
+  }
+
+  return Email;
+}
+/**
+ * Thời gian bắt đầu của mỗi kíp thi
+ * @customfunction HUST.KipThi
+ * @param {number} KipThi   Số thứ tự kíp thi, là 1 | 2 | 3 | 4. Bách Khoa Hà Nội chỉ có 4 buổi thi mỗi ngày.
+ * @param {string} PhanTach Kí tự phân tách giữa giờ và phút. Mặc định là ':'
+ * @returns {string} Giờ bắt đầu của kíp thi
+ * @example =KipThi(2) =7:00
+ *          =KipThi(3," giờ "") =12 giờ 30
+ * @helpurl https://mycel.app/help/KipThi.html
+ * @interface
+*/
+
+
+function KipThi(KipThi, PhanTach) {
+  if (PhanTach === void 0) {
+    PhanTach = ":";
+  }
+
+  if (PhanTach === null) {
+    PhanTach = ":";
+  }
+
+  var StartTime;
+
+  switch (KipThi) {
+    case 1:
+      StartTime = "7" + PhanTach + "00";
+      break;
+
+    case 2:
+      StartTime = "9" + PhanTach + "30";
+      break;
+
+    case 3:
+      StartTime = "12" + PhanTach + "30";
+      break;
+
+    case 4:
+      StartTime = "15" + PhanTach + "00";
+      break;
+
+    default:
+      StartTime = "Không hợp lệ";
+      break;
+  }
+
+  return StartTime;
+}
+/**
+ * Thông tin profile của sinh viên, cán bộ trên hệ thống Sharepoint.
+ * @customfunction HUST.SharepointProfile
+ * @param {string} EmailSinhVien   Email HUST của sinh viên. Ví dụ chinh.bq002987@sis.hust.edu.vn
+ * @returns {string} URL Profile trên hệ thống Sharepoint trong Office365 của sinh viên đó.
+ * Lưu ý: người xem phải đăng nhập vào Office365 theo tài khoản email trường để có quyền xem thông tin tài khoản.
+ * @example =SharepointProfile("long.lv202987@sis.hust.edu.vn") =https://husteduvn-my.sharepoint.com/person.aspx?user=long.lv202987@sis.hust.edu.vn
+ * @helpurl https://mycel.app/help/SharepointProfile.html
+ * @interface
+*/
+
+
+function SharepointProfile(EmailSinhVien) {
+  return "https://husteduvn-my.sharepoint.com/person.aspx?user=" + EmailSinhVien;
+}
+/**
+ * Thông tin về Viện Công nghệ Thông tin và Truyền thông, Đại học Bách khoa Hà Nội
+ * @customfunction HUST.SOICT
+ * @returns {string[][]} Thông tin liên hệ
+ * @example =SOICT() = VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG
+ *                     SCHOOL OF INFORMATION AND COMMUNICATIONS TECHNOLOGY
+ * @helpurl https://mycel.app/help/SOICT.html
+ * @interface
+*/
+
+
+function SOICT() {
+  var result;
+  result = new Array();
+  result[0] = ["VIỆN CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG"];
+  result[1] = ["SCHOOL OF INFORMATION AND COMMUNICATIONS TECHNOLOGY"];
+  result[2] = ["https://soict.hust.edu.vn/"];
+  result[3] = ["https://www.facebook.com/SoictOfficially"];
+  result[4] = ["Nhà B1 – Đại học Bách khoa Hà nội Số 1 Đại Cồ Việt – Hai Bà Trưng – Hà Nội"];
+  result[5] = ["024 3869 2463"];
+  return result;
+}
+/**
+ * Thông tin về Đại học Bách khoa Hà Nội
+ * @customfunction HUST.HUST
+ * @returns {string[][]} Thông tin liên hệ
+ * @example =HUST() = ĐẠI HỌC BÁCH KHOA HÀ NỘI
+ *                    Hanoi University of Science and Technology
+ * @helpurl https://mycel.app/help/HUST.html
+ * @interface
+*/
+
+
+function HUST() {
+  return [['ĐẠI HỌC BÁCH KHOA HÀ NỘI'], ['Hanoi University of Science and Technology'], ['https://www.hust.edu.vn/'], ['https://www.facebook.com/dhbkhanoi'], ['Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội'], ['024 3869 4242']];
+}
+/**
+ * Qui đổi điểm số ở thang đo 10 điểm về thang đo 4
+ * @customfunction HUST.ThangDiem10_4
+ * @param {number} d10 Điểm số ở thang đo 10. Ví dụ 8.0
+ * @returns {number} Điểm số ở thang đo 4. Ví dụ 3.5
+ * @example =ThangDiem10_4(9.5) =4.0
+ * @helpurl https://mycel.app/help/ThangDiem10_4.html
+ * @interface
+*/
+
+
+function ThangDiem10_4(d10) {
+  var x; // Điểm số ở thang ABCD
+
+  if (d10 >= 8.5 &amp;&amp; d10 &lt;= 10) x = 4.0;else if (d10 >= 8 &amp;&amp; d10 &lt; 8.5) x = 3.5;else if (d10 >= 7 &amp;&amp; d10 &lt; 8) x = 3.0;else if (d10 >= 6.5 &amp;&amp; d10 &lt; 7) x = 2.5;else if (d10 >= 5.5 &amp;&amp; d10 &lt; 6.5) x = 2.0;else if (d10 >= 5 &amp;&amp; d10 &lt; 5.5) x = 1.5;else if (d10 >= 4 &amp;&amp; d10 &lt; 5) x = 1.0;else if (d10 &lt; 4) x = 0.0;
+  return x;
+}
+/**
+ * Qui đổi điểm số ở thang đo 10 điểm về thang đo ABCD
+ * @customfunction HUST.ThangDiem10_ABCD
+ * @param {number} d10 Điểm số ở thang đo 10. Ví dụ 8.5
+ * @returns {string} Điểm số ở thang đo 4. Ví dụ A
+ * @example =ThangDiem10_ABCD(9.5) =A+
+ * @helpurl https://mycel.app/help/ThangDiem10_ABCD.html
+ * @interface
+*/
+
+
+function ThangDiem10_ABCD(d10) {
+  var x; // Điểm số ở thang ABCD
+
+  if (d10 >= 9.5 &amp;&amp; d10 &lt;= 10) x = 'A+';else if (d10 >= 8.5 &amp;&amp; d10 &lt; 9.5) x = 'A';else if (d10 >= 8 &amp;&amp; d10 &lt; 8.5) x = 'B+';else if (d10 >= 7 &amp;&amp; d10 &lt; 8) x = 'B';else if (d10 >= 6.5 &amp;&amp; d10 &lt; 7) x = 'C+';else if (d10 >= 5.5 &amp;&amp; d10 &lt; 6.5) x = 'C';else if (d10 >= 5 &amp;&amp; d10 &lt; 5.5) x = 'D+';else if (d10 >= 4 &amp;&amp; d10 &lt; 5) x = 'D';else if (d10 &lt; 4) x = 'F';
+  return x;
+}
+/**
+ * Thời gian bắt đầu/kết thúc của các tiết học
+ * @customfunction HUST.TietHoc
+ * @param {number} Period Tiết học bắt đầu. Phạm vi [1, 14]. Ví dụ 1; 3;
+ * @param {boolean} Start Xem giờ bắt đầu (true) hoặc giờ kết thúc (false). Mặc định true.
+ * @param {string} [Seperator] Kí tự phân tách giữa giờ và phút. Mặc định là ':'
+ * @returns {string} Thời gian bắt đầu hoặc kết thúc của 1 tiết học hoặc nhiều tiết học.
+ * @example =TietHoc(2) =7h00
+ * @helpurl https://mycel.app/help/TietHoc.html
+ * @interface
+*/
+
+
+function TietHoc(Period, Start, Seperator) {
+  if (Start === void 0) {
+    Start = true;
+  }
+
+  if (Seperator === void 0) {
+    Seperator = ':';
+  }
+
+  var TimeTable = [['6:45', '7:30'], ['7:30', '8:15'], ['8:25', '9:10'], ['9:20', '10:05'], ['10:15', '11:00'], ['11:00', '11:45'], ['12:30', '13:15'], ['13:15', '14:00'], ['14:10', '14:55'], ['15:05', '15:50'], ['16:00', '16:45'], ['16:45', '17:30'], ['17:45', '18:30'], ['18:30', '19:15']];
+
+  if (Period &lt; 1 || Period > 14) {
+    var error = new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Tiết học chỉ hợp lệ từ 1 tới 14");
+    throw error;
+  }
+
+  if (Seperator === null) {
+    Seperator = ":";
+  }
+
+  if (Start === null) {
+    Start = true;
+  } // Trích ra thời gian bắt đầu/kết thúc từ bảng hằng Thời khóa biểu  
+
+
+  return TimeTable[Period][Start ? 0 : 1].replace(":", Seperator);
+}
+/**
+ * Chuyển đổi từ email thành mã số sinh viên
+ * @customfunction HUST.Email2MaSo
+ * @param {string} Email HUST của sinh viên. Ví dụ dat.hdt20121987@sis.hust.edu.vn
+ * @returns {number} MaSoSinhVien Mã số SV do trường cấp. Bỏ trống nếu là giảng viên. Ví dụ 20202987.
+ * @example =Email2MaSo("dat.hdt121987@sis.hust.edu.vn") = 20121987
+ * @helpurl https://mycel.app/help/Email2MaSo.html
+ * @throws {invalidValue} gia trì đầu vào không phải là email sinh viên
+ * @interface
+ */
+
+
+function Email2MaSo(email) {
+  // Xác định vị trí của kí tự @
+  var PosOfAt;
+  PosOfAt = email.indexOf("@");
+
+  if (PosOfAt &lt; 0) {
+    throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Không phải email hợp lệ");
+  } // Nếu không đủ độ dài 6 số thì cũng không hợp lệ
+
+
+  if (PosOfAt &lt; 6) {
+    throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidValue, "Thông tin trích xuất mã số sinh viên không phù hợp");
+  } // trích xuất 6 kí tự tiềm năng là MSSV
+
+
+  var suspects;
+  suspects = email.substring(PosOfAt - 6, PosOfAt);
+  var result;
+  result = Number(suspects);
+
+  if (result === NaN) {
+    throw new CustomFunctions.Error(CustomFunctions.ErrorCode.invalidNumber, "Mã số sinh viên phải có dạng số nguyên 8 chữ số");
+  }
+
+  return result + 20000000;
+}
+
+module.exports.Email2MaSo = Email2MaSo;</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Tiện lợi như mơ</div>
+				<div class="copyright">Bản quyền thuộc Techlink Co Ltd.,</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri, 14/05/2021 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

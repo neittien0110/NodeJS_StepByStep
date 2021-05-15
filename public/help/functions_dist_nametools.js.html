@@ -1,0 +1,354 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>functions/dist/nametools.js</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #007CB7;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #007CB7;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #007CB7;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #007CB7;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"ddd, DD/MM/yyyy","systemName":"Mycel","systemSummary":"Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn","systemLogo":"img/icon-32.png","systemColor":"#007CB7","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Commands","summary":"Các command ở trên Ribbon Tab Mycel"},{"kind":"global","title":"HÀM XỬ LÝ","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"mixin","title":"HÀM TÀI CHÍNH","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"interface","title":"SOICT-HUST","summary":"Dành riêng cho Bách khoa Hà Nội."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Taskpane","summary":"Các function trong taskpane."},{"kind":"tutorial","title":"KIỂU DỮ LIỆU","summary":"các kiểu dữ liệu "}],"footer":"Tiện lợi như mơ","copyright":"Bản quyền thuộc Techlink Co Ltd.,","linenums":true,"collapseSymbols":false,"inverseNav":false,"inlineNav":true,"outputSourceFiles":false,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname","search":true,"favicon":"favicon.ico","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/icon-32.png);">
+					Mycel
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li><a href="global.html">HÀM XỬ LÝ</a></li>
+							<li><a href="list_external.html">Commands</a></li>
+							<li><a href="list_interface.html">SOICT-HUST</a></li>
+							<li><a href="list_mixin.html">HÀM TÀI CHÍNH</a></li>
+							<li><a href="list_module.html">Modules</a></li>
+							<li><a href="list_namespace.html">Taskpane</a></li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">functions/dist/nametools.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">"use strict";
+//---------------------------------------------------------------------------------------
+//  Các hàm xử lý tên người
+//---------------------------------------------------------------------------------------
+exports.__esModule = true;
+exports.VanBanKhongDau = void 0;
+/**
+ * Chuyển họ tên có dấu thành họ tên không dấu
+ * @customfunction
+ * @param {string} HoTen Tên có có dấu. Ví dụ Lê Văn Long
+ * @returns {string} họ tên viết không dấu
+ * @example =LayTenKhongDau(A1), =LayTenKhongDau('Nguyễn Thị Thanh Nga')
+ * @helpurl https://mycel.app/help/global.html#LayTenKhongDau
+ */
+function LayTenKhongDau(HoTen) {
+    return VanBanKhongDau(HoTen);
+}
+/**
+ *  Trích ra phần tên, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Đinh Công Thuật
+ * @returns {string} Tên. Ví dụ Thuật
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayTen
+ */
+function LayTen(HoVaTen) {
+    //return "Lê Mạnh Hùng";
+    return ExtractLastName(HoVaTen);
+}
+/**
+ *  Trích ra phần họ, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Đinh Công Thuật
+ * @returns {string} Họ. Ví dụ Đinh
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayHo
+ */
+function LayHo(HoVaTen) {
+    return ExtractFirstName(HoVaTen);
+}
+/**
+ *  Trích ra phần tên đệm, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Nguyễn Thị Thuỷ
+ * @returns {string} Tên đệm. Ví dụ Thị
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayDem
+ */
+function LayDem(HoVaTen) {
+    return ExtractMiddleName(HoVaTen);
+}
+/**
+ *  Trích ra các chữ cái viết tắt đầu từ, từ họ và tên đầy đủ
+ * @customfunction
+ * @param {string} HoVaTen Họ và tên đầy đủ bằng tiếng Việt có dấu. Ví dụ Nguyễn Thị Thanh Nga
+ * @returns {string} Chữ cái đầu. Ví dụ NTTN
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#LayCacChuCaiDau
+ */
+function LayCacChuCaiDau(HoVaTen) {
+    return ExtractFirstLetters(HoVaTen);
+}
+/**
+ * Loại bỏ dấu khỏi chuỗi văn bản tiếng Việt.
+ * @customfunction VanBanKhongDau
+ * @param {string} text Văn bản tiếng Việt có dấu. Ví dụ Lê Văn Long
+ * @returns {string} văn bản không dấu
+ * @helpurl https://users.soict.hust.edu.vn/sinno/projects/myexcel/help/global.html#VanBanKhongDau
+ */
+function VanBanKhongDau(text) {
+    //Danh sách các kí tự tiếng Việt
+    var VietnameseSigns = [
+        "aAeEoOuUiIdDyY",
+        "áàạảãâấầậẩẫăắằặẳẵ",
+        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+        "éèẹẻẽêếềệểễ",
+        "ÉÈẸẺẼÊẾỀỆỂỄ",
+        "óòọỏõôốồộổỗơớờợởỡ",
+        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+        "úùụủũưứừựửữ",
+        "ÚÙỤỦŨƯỨỪỰỬỮ",
+        "íìịỉĩ",
+        "ÍÌỊỈĨ",
+        "đ",
+        "Đ",
+        "ýỳỵỷỹ",
+        "ÝỲỴỶỸ"
+    ];
+    var regex;
+    for (var i = 1; i &lt; VietnameseSigns.length; i++) {
+        for (var j = 0; j &lt; VietnameseSigns[i].length; j++) {
+            // Fix-bug: không đổi được toàn bộ kí tự.
+            // Nguyên nhân: Hàm replace với tham số vào string chỉ cho phép đổi 1,2 trường hợp đầu tiên
+            //              Muốn thay thế toàn bộ, phải sử dụng tham số dạng Regex
+            regex = new RegExp(VietnameseSigns[i][j], "g");
+            text = text.replace(regex, VietnameseSigns[0][i - 1]);
+        }
+    }
+    return text;
+}
+exports.VanBanKhongDau = VanBanKhongDau;
+/**
+ * Lấy duy nhất từ cuối cùng khỏi tên đầy đủ =MY.LAYTEN("Lê Văn Long")
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Từ cuối cùng
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractLastName(FullName) {
+    var i;
+    var len;
+    try {
+        /// Loại bỏ kí tự trống ở cuối nếu có
+        FullName = String(FullName).trimRight();
+        len = FullName.length;
+        /// Tìm vị trí kí tự space cuối cùng
+        for (i = len - 1; i >= 0; i--) {
+            if (FullName[i] == " ")
+                break;
+        }
+        if (i &lt; 0) {
+            return "";
+        }
+        else {
+            return FullName.substr(i + 1, len - i - 1);
+        }
+    }
+    catch (err) {
+        return err.message;
+    }
+}
+/**
+ * Lấy duy nhất từ đầu tiên khỏi tên đầy đủ
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Từ đầu tiên
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractFirstName(FullName) {
+    var i;
+    var len;
+    /// Loại bỏ kí tự trống ở đầu nếu có
+    FullName = FullName.trimLeft();
+    len = FullName.length;
+    /// Tìm vị trí kí tự space đầu tiên
+    for (i = 1; i &lt; len; i++) {
+        if (FullName[i] == " ")
+            break;
+    }
+    if (i &lt; len) {
+        return FullName.substr(0, i);
+    }
+    else {
+        return FullName;
+    }
+}
+/**
+ * Lấy duy nhất đệm  khỏi tên đầy đủ
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Đệm
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractMiddleName(FullName) {
+    var pos_end;
+    var pos_start;
+    var len;
+    /// Loại bỏ kí tự trống ở cả 2 đầu cuối nếu có
+    FullName = FullName.trim();
+    len = FullName.length;
+    /// Tìm vị trí kí tự space đầu tiên
+    for (pos_start = 1; pos_start &lt; len; pos_start++) {
+        if (FullName[pos_start] == " ")
+            break;
+    }
+    if (pos_start >= len) {
+        return "";
+    }
+    /// Bỏ qua các kí tự trống
+    for (pos_start++; pos_start &lt; len &amp;&amp; FullName[pos_start] == " "; pos_start++) { }
+    /// Tìm vị trí kí tự space cuối cùng
+    for (pos_end = len - 1; pos_end > pos_start; pos_end--) {
+        if (FullName[pos_end] == " ")
+            break;
+    }
+    if (pos_end &lt; pos_start) {
+        return "";
+    }
+    else {
+        return FullName.substring(pos_start, pos_end).trimRight();
+    }
+}
+/**
+ * Lấy các chữ cái đầu tên
+ * @private
+ * @param {string} FullName Tên đầy đủ
+ * @returns {string} Chuỗi các chữ cái đầu
+ * @helpurl http://soict.hust.edu.vn/sinno/
+ */
+function ExtractFirstLetters(FullName) {
+    /// Kết quả cần tính
+    var ShorthenName = "";
+    /// Loại bỏ kí tự trống ở cả 2 đầu cuối nếu có
+    FullName = FullName.trim();
+    var len = FullName.length;
+    if (len == 1) {
+        /// Nếu chỉ có 1 kí tự thì xong luôn
+        ShorthenName = FullName;
+    }
+    else {
+        /// Phân tách từ và chữ cái đầu của từng từ
+        ShorthenName = ShorthenName + FullName[0];
+        for (var i = 0; i &lt; len; i++) {
+            if (FullName[i] == " " &amp;&amp; i &lt; len - 1 &amp;&amp; FullName[i + 1] != " ") {
+                ShorthenName = ShorthenName + FullName[i + 1];
+                i++;
+            }
+        }
+    }
+    return ShorthenName;
+}
+module.exports.LayTen = LayTen;
+module.exports.LayCacChuCaiDau = LayCacChuCaiDau;
+module.exports.LayTenKhongDau = LayTenKhongDau;
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Tiện lợi như mơ</div>
+				<div class="copyright">Bản quyền thuộc Techlink Co Ltd.,</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri, 14/05/2021 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

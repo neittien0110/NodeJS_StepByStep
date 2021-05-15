@@ -1,0 +1,191 @@
+<!-- start:readme.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>Mycel</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #007CB7;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #007CB7;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #007CB7;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #007CB7;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"ddd, DD/MM/yyyy","systemName":"Mycel","systemSummary":"Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn","systemLogo":"img/icon-32.png","systemColor":"#007CB7","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Commands","summary":"Các command ở trên Ribbon Tab Mycel"},{"kind":"global","title":"HÀM XỬ LÝ","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"mixin","title":"HÀM TÀI CHÍNH","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"interface","title":"SOICT-HUST","summary":"Dành riêng cho Bách khoa Hà Nội."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Taskpane","summary":"Các function trong taskpane."},{"kind":"tutorial","title":"KIỂU DỮ LIỆU","summary":"các kiểu dữ liệu "}],"footer":"Tiện lợi như mơ","copyright":"Bản quyền thuộc Techlink Co Ltd.,","linenums":true,"collapseSymbols":false,"inverseNav":false,"inlineNav":true,"outputSourceFiles":false,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname","search":true,"favicon":"favicon.ico","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = true;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/icon-32.png);">
+					Mycel
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li><a href="global.html">HÀM XỬ LÝ</a></li>
+							<li><a href="list_external.html">Commands</a></li>
+							<li><a href="list_interface.html">SOICT-HUST</a></li>
+							<li><a href="list_mixin.html">HÀM TÀI CHÍNH</a></li>
+							<li><a href="list_module.html">Modules</a></li>
+							<li><a href="list_namespace.html">Taskpane</a></li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">readme</span>
+				<h1><span class="name">Mycel</span></h1>
+				<div class="summary"><p>Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn</p></div>			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-9 main-content">
+		<section class="readme-section">
+			<article><h1>Giới thiệu về các hàm tính mới</h1>
+<p>Các hàm tính được bổ sung vào kho công thức của Excel. Người sử dụng Excel có thể sử dụng các hàm này giống hệt như các hàm thông thường, như là <code>SUM()</code>.</p>
+<h1>Hướng dẫn</h1>
+<h2>Hướng dẫn sử dụng</h2>
+<ul>
+<li>Với các hàm tính, bạn gõ tên hàm vào nội dung cell như các hàm thông thường. Đặc điểm đễ nhận dạng là các hàm mới luôn có tiền tố <strong>MY.</strong> ở trước. Ví dụ:</li>
+</ul>
+<pre class="prettyprint source"><code> =MY.TyGia(&quot;bán&quot;,&quot;30/07/2020&quot;)
+</code></pre>
+<pre class="prettyprint source"><code> =MY.BangChu(&quot;123456789&quot;)
+</code></pre>
+<p><a href="./global.html">Bấm vào đây</a> để xem hướng dẫn sử dụng hàm.</p>
+<ul>
+<li>Với các tiện ích không phải hàm tính, bạn bấm vào nút <strong>Mycel</strong> trên thanh Ribbon ỏ tab <strong>Insert</strong>. Lúc này thanh TaskPane sẽ hiện ra ở bên trái. Bạn xem và lựa chọn các tính năng trong này.</li>
+</ul>
+<h2>Hướng dẫn cài đặt</h2>
+<ol>
+<li>Mở Excel. Bạn có thể dùng Excel phiên bản online hoặc Offline đều được.</li>
+<li>Trên thanh <strong>Ribbon</strong>, chọn tab <strong>Insert</strong>, group <strong>Add-ins</strong>, bấm <strong>Get Add-ins</strong>.
+Cửa sổ <strong>Office Add-ins</strong> sẽ xuất hiện.</li>
+<li>Trong ô tìm kiếm <strong>Search</strong>, nhập tên Add-in cần cài đặt là <strong>Mycel</strong></li>
+<li>Bấm chọn ở dòng thông tin về <strong>Mycel</strong> để mở ra trang thông tin về Add-in này.</li>
+<li>Bấm <strong>Add</strong> để.</li>
+<li>Khi cửa sổ <strong>One moment...</strong> xuất hiện để xác nhận bạn thực sự muốn cài đặt add-in, bấm <strong>Continue</strong>.</li>
+</ol>
+<p>Bạn đã hoàn thành quá trình cài đặt.
+Vui lòng đợi trong vài giây tới nửa phút, bạn sẽ nhìn thấy biểu tượng <strong>Mycel</strong> xuất hiện trên thanh <strong>Ribbon</strong> / tab <strong>Insert</strong> / group <strong>Mycel</strong> ở vị trí cuối bên phải.</p>
+<h2>Hướng dẫn gỡ bỏ</h2>
+<ol>
+<li>Mở Excel.</li>
+<li>Trên thanh <strong>Ribbon</strong>, chọn tab <strong>Insert</strong>. Ở group <strong>Mycel</strong> ở vị trí cuối bên phải, bạn sẽ nhìn thấy biểu tượng <strong>Mycel</strong>.</li>
+<li>Bấm chuột phải vào biểu tượng <strong>Mycel</strong>, chọn <strong>Remove Add-in</strong>.</li>
+<li>Khi cửa sổ <strong>Remove Add-ins</strong> xuất hiện để xác nhận bạn thực sự muốn gỡ bỏ add-in, bấm <strong>Yes</strong>.</li>
+</ol>
+<p>Bạn đã hoàn thành quá trình gỡ bỏ <strong>Mycel</strong>.</p>
+<h1>Câu hỏi và phản hồi</h1>
+<p>Chúng tôi hết sức vui mừng và trân trọng phản hồi của bạn.</p>
+<h1>Liên hệ</h1>
+<p>Sản phẩm được phát triển Techlink</p>
+<ul>
+<li>Tel: +84-24-3222-2887</li>
+<li>Email: support@techlinkvn.com</li>
+<li>Web: www.techlinkvn.com</li>
+<li>Địa chỉ: Nhà B1, Lô 6, KĐT Định Công, Quận Hoàng Mai, Hà Nội, Việt Nam</li>
+</ul>
+<p>`# Đội ngũ phát triển</p>
+<p>Xin trân trọng cảm ơn sự đóng góp của cộng đồng các chuyên gia IT, các chuyên gia và nhân viên tài chính, hành chính, quản lý... đã hỗ trợ chúng tôi thực hiện phần mềm này, cùng với</p>
+<ul>
+<li><a href="http://techlinkvn.com/">Techlink Ltd.,</a></li>
+<li><a href="https://users.soict.hust.edu.vn/sinno">Sinno Club</a></li>
+</ul>
+<h1>Bản quyền</h1>
+<p>Sản phẩm được phát triển và thuộc về TECHLINK Ltd.,</p>
+<ul>
+<li><a href="http://techlinkvn.com/">Techlink Ltd.,</a></li>
+</ul></article>
+		</section>
+			</div>
+				<div class="col-md-3 side-content">
+					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
+				</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Tiện lợi như mơ</div>
+				<div class="copyright">Bản quyền thuộc Techlink Co Ltd.,</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri, 14/05/2021 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:readme.hbs -->

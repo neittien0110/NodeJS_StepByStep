@@ -1,0 +1,997 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>taskpane/dist/taskpane.js</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+			<style>
+				.page-header,
+				pre.code-toolbar > .toolbar:hover {
+					background-color: #007CB7;
+				}
+				.callout-primary,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus,
+				pre.code-toolbar > .toolbar:hover {
+					border-left-color: #007CB7;
+				}
+				pre.code-toolbar > .toolbar:hover {
+					border-bottom-color: #007CB7;
+				}
+				.callout-primary h5,
+				.symbol-title.collapsible-symbol .toggle-icon,
+				.breadcrumb li a,
+				.toc .nav > li > a:hover,
+				.toc .nav > li > a:focus,
+				.toc .nav > li.active > a,
+				.toc .nav > li.active > a:hover,
+				.toc .nav > li.active > a:focus {
+					color: #007CB7;
+				}
+			</style>
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"ddd, DD/MM/yyyy","systemName":"Mycel","systemSummary":"Mở rộng các hàm tính toán để Excel trở nên đơn giản và tiện lợi hơn","systemLogo":"img/icon-32.png","systemColor":"#007CB7","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Commands","summary":"Các command ở trên Ribbon Tab Mycel"},{"kind":"global","title":"HÀM XỬ LÝ","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"mixin","title":"HÀM TÀI CHÍNH","summary":"sử dụng trong các cell, dùng giống như các hàm MID, VLOOKUP.."},{"kind":"interface","title":"SOICT-HUST","summary":"Dành riêng cho Bách khoa Hà Nội."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Taskpane","summary":"Các function trong taskpane."},{"kind":"tutorial","title":"KIỂU DỮ LIỆU","summary":"các kiểu dữ liệu "}],"footer":"Tiện lợi như mơ","copyright":"Bản quyền thuộc Techlink Co Ltd.,","linenums":true,"collapseSymbols":false,"inverseNav":false,"inlineNav":true,"outputSourceFiles":false,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"longname","search":true,"favicon":"favicon.ico","stylesheets":[],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand branding-logo" href="index.html" style="background-image: url(img/icon-32.png);">
+					Mycel
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+							<li><a href="global.html">HÀM XỬ LÝ</a></li>
+							<li><a href="list_external.html">Commands</a></li>
+							<li><a href="list_interface.html">SOICT-HUST</a></li>
+							<li><a href="list_mixin.html">HÀM TÀI CHÍNH</a></li>
+							<li><a href="list_module.html">Modules</a></li>
+							<li><a href="list_namespace.html">Taskpane</a></li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">taskpane/dist/taskpane.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">"use strict";
+var __awaiter = (this &amp;&amp; this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this &amp;&amp; this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] &amp; 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" &amp;&amp; (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y &amp;&amp; (t = op[0] &amp; 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) &amp;&amp; t.call(y), 0) : y.next) &amp;&amp; !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] &amp; 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 &amp;&amp; t[t.length - 1]) &amp;&amp; (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 &amp;&amp; (!t || (op[1] > t[0] &amp;&amp; op[1] &lt; t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 &amp;&amp; _.label &lt; t[1]) { _.label = t[1]; t = op; break; }
+                    if (t &amp;&amp; _.label &lt; t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] &amp; 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+exports.__esModule = true;
+exports.colorize = void 0;
+/*
+ * Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
+// images references in the manifest
+require("../../assets/icon-16.png");
+require("../../assets/icon-32.png");
+require("../../assets/icon-80.png");
+/* global console, document, Excel, Office */
+// The initialize function must be run each time a new page is loaded
+Office.initialize = function () {
+    document.getElementById("sideload-msg").style.display = "none";
+    document.getElementById("app-body").style.display = "flex";
+    // document.getElementById("run").onclick = run;
+    document.getElementById("colorizeButton").onclick = colorize;
+    document.getElementById("scrollDownButton").onclick = scrollDown;
+    document.getElementById("speakNumberButton").onclick = speakNumber;
+    document.getElementById("speakNumberAndDownButton").onclick = speakNumberAndDown;
+    document.getElementById("docsPropsButton").onclick = documentProperties;
+    document.getElementById("tachVaSum").onclick = tachVaSum;
+};
+function run() {
+    return __awaiter(this, void 0, void 0, function () {
+        var error_1;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, Excel.run(function (context) { return __awaiter(_this, void 0, void 0, function () {
+                            var range;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        range = context.workbook.getSelectedRange();
+                                        // Read the range address
+                                        range.load("address");
+                                        // Update the fill color
+                                        range.format.fill.color = "yellow";
+                                        return [4 /*yield*/, context.sync()];
+                                    case 1:
+                                        _a.sent();
+                                        console.log("The range address was " + range.address + ".");
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); })];
+                case 1:
+                    _a.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    console.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+// colorize cells with cells' values
+function colorize() {
+    // Excel.run(function(context) {
+    //   var range = context.workbook.getSelectedRange();
+    //   var saturation = (&lt;HTMLInputElement>document.getElementById("saturation")).value;
+    //   if (isNaN(+saturation) || saturation == "") {
+    //     //TODO: Display error on dialog or something
+    //     range.getCell(0, 0).values = [["Saturation is NaN"]];
+    //   } else if (+saturation &lt; 0 || +saturation > 255) {
+    //     //TODO: Display error on dialog or something
+    //     range.getCell(0, 0).values = [["Saturation is out of range"]];
+    //   } else {
+    //     var colorSelected = (&lt;HTMLInputElement>document.getElementById("color")).value;
+    //     var saturationInHex = parseInt(saturation).toString(16);
+    //     if (saturationInHex.length &lt; 2) {
+    //       saturationInHex = "0" + saturationInHex;
+    //     }
+    //     if (+saturation > 128) {
+    //       range.format.font.color = "black";
+    //     } else {
+    //       range.format.font.color = "white";
+    //     }
+    //     //range.format.fill.color = "#873F11";
+    //     switch (colorSelected) {
+    //       case "Red":
+    //         range.format.fill.color = "#" + saturationInHex + "0000";
+    //         //range.values = [["#" + saturationInHex + "0000"]];
+    //         break;
+    //       case "Green":
+    //         range.format.fill.color = "#00" + saturationInHex + "00";
+    //         // range.values = [["#00" + saturationInHex + "00"]];
+    //         break;
+    //       case "Blue":
+    //         range.format.fill.color = "#0000" + saturationInHex;
+    //         //range.values = [["#0000" + saturationInHex]];
+    //         break;
+    //       case "Gray":
+    //         range.format.fill.color = "#" + saturationInHex + saturationInHex + saturationInHex;
+    //         //range.values = [["#" + saturationInHex + saturationInHex + saturationInHex]];
+    //         break;
+    //     }
+    //   }
+    //   return context.sync();
+    // }).catch(function(error) {
+    //   console.log("Error: " + error);
+    //   if (error instanceof OfficeExtension.Error) {
+    //     console.log("Debug info: " + JSON.stringify(error.debugInfo));
+    //   }
+    // });
+    Excel.run(function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            var range, colorSelected, i, j, tmpRangeValueColorInHex;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        range = context.workbook.getSelectedRange();
+                        range.load(["columnCount", "rowCount", "values"]);
+                        return [4 /*yield*/, context.sync()];
+                    case 1:
+                        _a.sent();
+                        colorSelected = document.getElementById("color").value;
+                        switch (colorSelected //REMEMBER TO CHANGE ALL CASES
+                        ) {
+                            case "Red":
+                                for (i = 0; i &lt; range.rowCount; i++) {
+                                    for (j = 0; j &lt; range.columnCount; j++) {
+                                        if (typeof range.values[i][j] != "number" || range.values[i][j] &lt; 0 || range.values[i][j] > 255) {
+                                            //not a number or out of range
+                                            range.getCell(i, j).format.fill.color = "white";
+                                            range.getCell(i, j).format.font.color = "black";
+                                        }
+                                        else {
+                                            tmpRangeValueColorInHex =
+                                                "#" +
+                                                    parseInt(range.values[i][j])
+                                                        .toString(16)
+                                                        .padStart(2, "0") +
+                                                    "0000";
+                                            range.getCell(i, j).format.fill.color = tmpRangeValueColorInHex;
+                                            if (parseInt(range.values[i][j]) > 128) {
+                                                range.getCell(i, j).format.font.color = "black";
+                                            }
+                                            else {
+                                                range.getCell(i, j).format.font.color = "white";
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+                            case "Green":
+                                for (i = 0; i &lt; range.rowCount; i++) {
+                                    for (j = 0; j &lt; range.columnCount; j++) {
+                                        if (typeof range.values[i][j] != "number" || range.values[i][j] &lt; 0 || range.values[i][j] > 255) {
+                                            //not a number or out of range
+                                            range.getCell(i, j).format.fill.color = "white";
+                                            range.getCell(i, j).format.font.color = "black";
+                                        }
+                                        else {
+                                            tmpRangeValueColorInHex =
+                                                "#00" +
+                                                    parseInt(range.values[i][j])
+                                                        .toString(16)
+                                                        .padStart(2, "0") +
+                                                    "00";
+                                            range.getCell(i, j).format.fill.color = tmpRangeValueColorInHex;
+                                            if (parseInt(range.values[i][j]) > 128) {
+                                                range.getCell(i, j).format.font.color = "black";
+                                            }
+                                            else {
+                                                range.getCell(i, j).format.font.color = "white";
+                                            }
+                                        }
+                                    }
+                                }
+                                // range.format.fill.color = "#00" + saturationInHex + "00";
+                                //range.values = "#00" + saturationInHex + "00";
+                                break;
+                            case "Blue":
+                                for (i = 0; i &lt; range.rowCount; i++) {
+                                    for (j = 0; j &lt; range.columnCount; j++) {
+                                        if (typeof range.values[i][j] != "number" || range.values[i][j] &lt; 0 || range.values[i][j] > 255) {
+                                            //not a number or out of range
+                                            range.getCell(i, j).format.fill.color = "white";
+                                            range.getCell(i, j).format.font.color = "black";
+                                        }
+                                        else {
+                                            tmpRangeValueColorInHex =
+                                                "#0000" +
+                                                    parseInt(range.values[i][j])
+                                                        .toString(16)
+                                                        .padStart(2, "0");
+                                            range.getCell(i, j).format.fill.color = tmpRangeValueColorInHex;
+                                            if (parseInt(range.values[i][j]) > 128) {
+                                                range.getCell(i, j).format.font.color = "black";
+                                            }
+                                            else {
+                                                range.getCell(i, j).format.font.color = "white";
+                                            }
+                                        }
+                                    }
+                                }
+                                // range.format.fill.color = "#0000" + saturationInHex;
+                                //range.values = "#0000" + saturationInHex;
+                                break;
+                            case "Gray":
+                                for (i = 0; i &lt; range.rowCount; i++) {
+                                    for (j = 0; j &lt; range.columnCount; j++) {
+                                        if (typeof range.values[i][j] != "number" || range.values[i][j] &lt; 0 || range.values[i][j] > 255) {
+                                            //not a number or out of range
+                                            range.getCell(i, j).format.fill.color = "white";
+                                            range.getCell(i, j).format.font.color = "black";
+                                        }
+                                        else {
+                                            tmpRangeValueColorInHex = parseInt(range.values[i][j])
+                                                .toString(16)
+                                                .padStart(2, "0");
+                                            tmpRangeValueColorInHex =
+                                                "#" + tmpRangeValueColorInHex + tmpRangeValueColorInHex + tmpRangeValueColorInHex;
+                                            range.getCell(i, j).format.fill.color = tmpRangeValueColorInHex;
+                                            if (parseInt(range.values[i][j]) > 128) {
+                                                range.getCell(i, j).format.font.color = "black";
+                                            }
+                                            else {
+                                                range.getCell(i, j).format.font.color = "white";
+                                            }
+                                        }
+                                    }
+                                }
+                                // range.format.fill.color =
+                                //   "#" + saturationInHex + saturationInHex + saturationInHex;
+                                //range.values =
+                                //"#" + saturationInHex + saturationInHex + saturationInHex;
+                                break;
+                        }
+                        return [4 /*yield*/, context.sync()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+}
+exports.colorize = colorize;
+//Scroll down for easier viewing input list
+function scrollDown() {
+    Excel.run(function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            var scrollDownInput, range, i, j;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        scrollDownInput = document.getElementById("scrollDownInput").value;
+                        range = context.workbook.getSelectedRange();
+                        if (!(scrollDownInput == "")) return [3 /*break*/, 2];
+                        range.getCell(0, 0).values = [["Please input something"]];
+                        return [4 /*yield*/, context.sync()];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 2:
+                        range.load(["rowCount", "columnCount"]);
+                        // range.getCell(0,0).values = [[scrollDownInput]];
+                        return [4 /*yield*/, context.sync()];
+                    case 3:
+                        // range.getCell(0,0).values = [[scrollDownInput]];
+                        _a.sent();
+                        for (i = 0; i &lt; range.rowCount; i++) {
+                            for (j = 0; j &lt; range.columnCount; j++) {
+                                range.getCell(i, j).values = [[scrollDownInput]];
+                            }
+                        }
+                        return [4 /*yield*/, context.sync()];
+                    case 4:
+                        _a.sent();
+                        range = range.getRowsBelow(15);
+                        range.select();
+                        return [4 /*yield*/, context.sync()];
+                    case 5:
+                        _a.sent();
+                        range = range.getRowsBelow();
+                        range.select();
+                        return [4 /*yield*/, context.sync()];
+                    case 6:
+                        _a.sent();
+                        range = range.getRowsAbove(14);
+                        range.select();
+                        return [4 /*yield*/, context.sync()];
+                    case 7:
+                        _a.sent();
+                        range = range.getRowsAbove();
+                        range.select();
+                        return [4 /*yield*/, context.sync()];
+                    case 8:
+                        _a.sent();
+                        _a.label = 9;
+                    case 9:
+                        focusInputScrolldown();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+}
+function focusInputScrolldown() {
+    var input = document.getElementById("scrollDownInput");
+    input.select();
+}
+/**
+ * Speak decimal number inside cell and down one cell
+ */
+function speakNumberAndDown() {
+    speakNumber().then(function () {
+        Excel.run(function (context) {
+            return __awaiter(this, void 0, void 0, function () {
+                var range;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            range = context.workbook.getSelectedRange();
+                            range = range.getRowsBelow();
+                            range.select();
+                            return [4 /*yield*/, context.sync()];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        })["catch"](function (error) {
+            console.log("Error: " + error);
+            if (error instanceof OfficeExtension.Error) {
+                console.log("Debug info: " + JSON.stringify(error.debugInfo));
+            }
+        });
+    });
+}
+/**
+ * Speak decimal number inside cell
+ */
+function speakNumber() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            Excel.run(function (context) {
+                return __awaiter(this, void 0, void 0, function () {
+                    function playSoundArray() {
+                        soundIndex++;
+                        console.log("soundIndex = " + soundIndex);
+                        if (soundIndex == sounds.length) {
+                            return;
+                        } //TODO: check
+                        sounds[soundIndex].addEventListener("ended", playSoundArray);
+                        sounds[soundIndex].play();
+                    }
+                    var range, cell, sounds, cellValueInString, soundIndex;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                range = context.workbook.getSelectedRange();
+                                cell = range.getCell(0, 0);
+                                cell.load("values");
+                                return [4 /*yield*/, context.sync()];
+                            case 1:
+                                _a.sent();
+                                sounds = new Array();
+                                console.log("cell.values = " + cell.values);
+                                cellValueInString = cell.values.toString();
+                                if (isNaN(+cellValueInString) || cellValueInString == "") {
+                                    console.log("check number: not number");
+                                    console.log("isNaN(+cellValueInString) = " + isNaN(+cellValueInString));
+                                    //TODO speak "not number type"
+                                    sounds.push(new Audio("../../sound/notNumber.wav"));
+                                }
+                                else {
+                                    sounds = soundArrayFromCell(+cellValueInString);
+                                }
+                                soundIndex = -1;
+                                console.log("sounds.length = " + sounds.length);
+                                playSoundArray();
+                                return [4 /*yield*/, context.sync()];
+                            case 2:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                });
+            })["catch"](function (error) {
+                console.log("Error: " + error);
+                if (error instanceof OfficeExtension.Error) {
+                    console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                }
+            });
+            return [2 /*return*/];
+        });
+    });
+}
+function soundArrayFromCell(number) {
+    var soundArray = new Array();
+    var biggestNumber = 8999999999999999;
+    var ketqua = "";
+    var chuSo = [" không", " một", " hai", " ba", " bốn", " năm", " sáu", " bẩy", " tám", " chín"];
+    var audioChuSo = [
+        new Audio("../../sound/0.wav"),
+        new Audio("../../sound/1.wav"),
+        new Audio("../../sound/2.wav"),
+        new Audio("../../sound/3.wav"),
+        new Audio("../../sound/4.wav"),
+        new Audio("../../sound/5.wav"),
+        new Audio("../../sound/6.wav"),
+        new Audio("../../sound/7.wav"),
+        new Audio("../../sound/8.wav"),
+        new Audio("../../sound/9.wav")
+    ];
+    if (number == 0) {
+        console.log("number == 0");
+        soundArray.push(audioChuSo[0]);
+        ketqua += chuSo[0];
+    }
+    else if (number > biggestNumber) {
+        console.log("number > biggestNumber");
+        //TODO: speak too big number
+        ketqua += "Number too large";
+    }
+    else {
+        var tien = [" GH", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"];
+        var audioTien = [
+            new Audio("../../sound/GolfHit.wav"),
+            new Audio("../../sound/nghin.wav"),
+            new Audio("../../sound/trieu.wav"),
+            new Audio("../../sound/ty.wav"),
+            new Audio("../../sound/nghinTy.wav"),
+            new Audio("../../sound/trieuTy.wav")
+        ];
+        var lan, i, integerPart, tmp = "";
+        var vitri = new Array(6);
+        if (number > 0) {
+            //Assign the absolute value to integerPart
+            console.log("number > 0");
+            integerPart = number;
+        }
+        else {
+            console.log("number &lt; 0");
+            integerPart = -number;
+        }
+        var decimalPart = integerPart;
+        decimalPart = decimalPart - Math.floor(decimalPart);
+        console.log("decimalPart be4 = " + decimalPart);
+        decimalPart = Math.round((decimalPart + Number.EPSILON) * 10000) / 10000;
+        console.log("decimalPart aft = " + decimalPart);
+        var decimalPartInString = decimalPart.toString();
+        decimalPartInString = decimalPartInString.substring(2);
+        console.log("decimalPartInString = " + decimalPartInString);
+        integerPart = Math.floor(integerPart); // get the integer part
+        vitri[5] = Math.floor(integerPart / 1000000000000000);
+        console.log("vitri[5] = " + vitri[5]);
+        integerPart -= vitri[5] * 1000000000000000;
+        vitri[4] = Math.floor(integerPart / 1000000000000);
+        console.log("vitri[4] = " + vitri[4]);
+        integerPart -= vitri[4] * 1000000000000;
+        vitri[3] = Math.floor(integerPart / 1000000000);
+        console.log("vitri[3] = " + vitri[3]);
+        integerPart -= vitri[3] * 1000000000;
+        vitri[2] = Math.floor(integerPart / 1000000);
+        console.log("vitri[2] = " + vitri[2]);
+        vitri[1] = Math.floor((integerPart % 1000000) / 1000);
+        console.log("vitri[1] = " + vitri[1]);
+        vitri[0] = integerPart % 1000;
+        console.log("vitri[0] = " + vitri[0]);
+        if (vitri[5] > 0) {
+            lan = 5;
+        }
+        else if (vitri[4] > 0) {
+            lan = 4;
+        }
+        else if (vitri[3] > 0) {
+            lan = 3;
+        }
+        else if (vitri[2] > 0) {
+            lan = 2;
+        }
+        else if (vitri[1] > 0) {
+            lan = 1;
+        }
+        else {
+            lan = 0;
+        }
+        console.log("lan = " + lan);
+        for (i = lan; i >= 0; i--) {
+            console.log("i in for = " + i);
+            tmp = docSo3ChuSo(vitri[i]);
+            console.log("tmp = " + tmp);
+            ketqua += tmp;
+            console.log("ketqua inside for loop lan= " + ketqua);
+            if (vitri[i] != 0 &amp;&amp; i != 0) {
+                // if (i == 0 &amp;&amp; ketqua.substring(ketqua.length - 1) == ",") ketqua = ketqua.substring(0, ketqua.length - 1);
+                ketqua += tien[i];
+                soundArray.push(audioTien[i]);
+            }
+            console.log("ketqua before adding , = " + ketqua);
+            if (i > 0 &amp;&amp; tmp != "")
+                ketqua += ",";
+            console.log("ketqua = after adding , = " + ketqua);
+        }
+        if (ketqua.substring(ketqua.length - 1) == ",")
+            ketqua = ketqua.substring(0, ketqua.length - 1);
+        ketqua = ketqua.trim();
+        if (number &lt; 0) {
+            ketqua = "âm " + ketqua;
+            soundArray.unshift(new Audio("../../sound/am.wav"));
+        }
+        console.log("ketqua after add - = " + ketqua);
+        if (decimalPartInString != "") {
+            ketqua += " phẩy";
+            soundArray.push(new Audio("../../sound/phay.wav"));
+            ketqua += docSo(decimalPartInString);
+        }
+    }
+    console.log("ketqua final = " + ketqua);
+    return soundArray;
+    function docSo(num) {
+        var ketQua = "";
+        var i;
+        console.log("num.length = " + num.length);
+        for (i = 0; i &lt; num.length; i++) {
+            console.log(num.substr(i, 1));
+            switch (num.substr(i, 1)) {
+                case "0":
+                    ketQua += " không";
+                    soundArray.push(audioChuSo[0]);
+                    break;
+                case "1":
+                    ketQua += " một";
+                    soundArray.push(audioChuSo[1]);
+                    break;
+                case "2":
+                    ketQua += " hai";
+                    soundArray.push(audioChuSo[2]);
+                    break;
+                case "3":
+                    ketQua += " ba";
+                    soundArray.push(audioChuSo[3]);
+                    break;
+                case "4":
+                    ketQua += " bốn";
+                    soundArray.push(audioChuSo[4]);
+                    break;
+                case "5":
+                    ketQua += " năm";
+                    soundArray.push(audioChuSo[5]);
+                    break;
+                case "6":
+                    ketQua += " sáu";
+                    soundArray.push(audioChuSo[6]);
+                    break;
+                case "7":
+                    ketQua += " bẩy";
+                    soundArray.push(audioChuSo[7]);
+                    break;
+                case "8":
+                    ketQua += " tám";
+                    soundArray.push(audioChuSo[8]);
+                    break;
+                case "9":
+                    ketQua += " chín";
+                    soundArray.push(audioChuSo[9]);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return ketQua;
+    }
+    function docSo3ChuSo(baso) {
+        console.log("baso = " + baso);
+        var tram, chuc, donvi;
+        var ketQua = "";
+        tram = Math.floor(baso / 100);
+        console.log("tram = " + tram);
+        chuc = Math.floor((baso % 100) / 10);
+        console.log("chuc = " + chuc);
+        donvi = baso % 10;
+        console.log("donvi = " + donvi);
+        if (tram == 0 &amp;&amp; chuc == 0 &amp;&amp; donvi == 0) {
+            return "";
+        }
+        if (ketqua.substring(ketqua.length - 1) == "," || tram != 0) {
+            ketQua += chuSo[tram] + " trăm";
+            soundArray.push(audioChuSo[tram]);
+            soundArray.push(new Audio("../../sound/tram.wav"));
+            if (chuc == 0 &amp;&amp; donvi != 0) {
+                ketQua += " linh";
+                soundArray.push(new Audio("../../sound/linh.wav"));
+            }
+        }
+        if (chuc != 0 &amp;&amp; chuc != 1) {
+            ketQua += chuSo[chuc] + " mươi";
+            soundArray.push(audioChuSo[chuc]);
+            soundArray.push(new Audio("../../sound/muoi.wav"));
+            if (chuc == 0 &amp;&amp; donvi != 0) {
+                ketQua += " linh";
+                soundArray.push(new Audio("../../sound/linh.wav"));
+            }
+        }
+        if (chuc == 1) {
+            ketQua += " mười";
+            soundArray.push(new Audio("../../sound/10.wav"));
+        }
+        switch (donvi) {
+            case 1:
+                if (chuc != 0 &amp;&amp; chuc != 1) {
+                    ketQua += " mốt";
+                    soundArray.push(new Audio("../../sound/mot.wav"));
+                }
+                else {
+                    ketQua += chuSo[donvi];
+                    soundArray.push(audioChuSo[donvi]);
+                }
+                break;
+            case 5:
+                if (chuc == 0) {
+                    ketQua += chuSo[donvi];
+                    soundArray.push(audioChuSo[donvi]);
+                }
+                else {
+                    ketQua += " lăm";
+                    soundArray.push(new Audio("../../sound/lam.wav"));
+                }
+                break;
+            default:
+                if (donvi != 0) {
+                    ketQua += chuSo[donvi];
+                    soundArray.push(audioChuSo[donvi]);
+                }
+                break;
+        }
+        return ketQua;
+    }
+}
+function documentProperties() {
+    Excel.run(function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            var wb, wbName, wbAuthor, wbCreationDate, wbLastAuthor, url_1, xhttp_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        wb = context.workbook;
+                        wb.properties.load(["author", "creationDate", "lastAuthor"]);
+                        wb.load(["name"]);
+                        return [4 /*yield*/, context.sync()];
+                    case 1:
+                        _a.sent();
+                        console.log("wb.properties.author = " + wb.properties.author);
+                        console.log("wb.properties.creationDate = " + wb.properties.creationDate);
+                        console.log("wb.properties.lastAuthor = " + wb.properties.lastAuthor);
+                        console.log("wb.name = " + wb.name);
+                        wbName = wb.name;
+                        wbAuthor = wb.properties.author;
+                        wbCreationDate = wb.properties.creationDate;
+                        wbLastAuthor = wb.properties.lastAuthor;
+                        if (!(wbName != (null || "") &amp;&amp; wbAuthor != (null || "") &amp;&amp; wbCreationDate != null &amp;&amp; wbLastAuthor != (null || ""))) return [3 /*break*/, 3];
+                        url_1 = "https://mycelwebapi.vimoitruong.xyz/excelDB?op=insert&amp;wbname=" +
+                            wbName +
+                            "&amp;author=" +
+                            wbAuthor +
+                            "&amp;creationdate=" +
+                            wbCreationDate +
+                            "&amp;lastauthor=" +
+                            wbLastAuthor;
+                        xhttp_1 = new XMLHttpRequest();
+                        return [4 /*yield*/, new Promise(function (resolve, reject) {
+                                xhttp_1.onreadystatechange = function () {
+                                    if (xhttp_1.readyState !== 4)
+                                        return;
+                                    if (xhttp_1.status == 200) {
+                                        // resolve(JSON.parse(xhttp.responseText).result);
+                                        // invocation.setResult(JSON.parse(xhttp.responseText).result);
+                                        console.log(JSON.parse(xhttp_1.responseText).result);
+                                    }
+                                    else {
+                                        reject({
+                                            status: xhttp_1.status,
+                                            statusText: xhttp_1.statusText
+                                        });
+                                        console.log("Request was rejected");
+                                        // invocation.setResult("Request was rejected");
+                                    }
+                                };
+                                xhttp_1.open("GET", url_1, true);
+                                xhttp_1.send();
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        console.log("Cannot insert, Something null!");
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, context.sync()];
+                    case 5:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+}
+/**
+ * Tách báo cáo với số lượng khách hàng lớn ra thành nhiều báo cáo với số lượng khách hàng nhỏ và thêm sum ở dưới
+ */
+function tachVaSum() {
+    Excel.run(function (context) {
+        return __awaiter(this, void 0, void 0, function () {
+            var sheet, sheets, rangeTemplate, usedRange, i, j, cellFormat, numberOfCustomersPerNewSheet, dataRangeCount, numberOfNewSheet, k, newSheet, dataRange, dataRangeI1Cell00, dataRangeI1, usedRangeOfNewSheet, lastRowOfNewSheet, sumRowOfNewSheet, sumTextCell, sumCell;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        sheet = context.workbook.worksheets.getActiveWorksheet();
+                        sheets = context.workbook.worksheets;
+                        rangeTemplate = sheet.getRange("A1:P7");
+                        usedRange = sheet.getUsedRange();
+                        usedRange.load("rowCount");
+                        rangeTemplate.load(["rowCount", "columnCount"]);
+                        return [4 /*yield*/, context.sync()];
+                    case 1:
+                        _a.sent();
+                        cellFormat = [];
+                        for (i = 0; i &lt; rangeTemplate.rowCount; i++) {
+                            cellFormat[i] = [rangeTemplate.columnCount];
+                            for (j = 0; j &lt; rangeTemplate.columnCount; j++) {
+                                cellFormat[i][j] = rangeTemplate.getCell(i, j);
+                                cellFormat[i][j].format.load(["rowHeight", "columnWidth"]);
+                                cellFormat[i][j].format.fill.load("color");
+                            }
+                        }
+                        return [4 /*yield*/, context.sync()];
+                    case 2:
+                        _a.sent();
+                        numberOfCustomersPerNewSheet = 20;
+                        console.log("usedRange.rowCount = " + usedRange.rowCount);
+                        dataRangeCount = usedRange.rowCount - 7;
+                        numberOfNewSheet = Math.ceil(dataRangeCount / numberOfCustomersPerNewSheet);
+                        console.log("numberOfNewSheet = " + numberOfNewSheet);
+                        k = 0;
+                        _a.label = 3;
+                    case 3:
+                        if (!(k &lt; numberOfNewSheet)) return [3 /*break*/, 9];
+                        newSheet = sheets.add("Trang in " + k);
+                        newSheet.showGridlines = false; // do not show grid lines
+                        //Copy template to new worksheet
+                        newSheet.getRange("A1:P7").copyFrom(rangeTemplate);
+                        for (i = 0; i &lt; rangeTemplate.rowCount; i++) {
+                            for (j = 0; j &lt; rangeTemplate.columnCount; j++) {
+                                newSheet.getCell(i, j).format.rowHeight = cellFormat[i][j].format.rowHeight;
+                                newSheet.getCell(i, j).format.columnWidth = cellFormat[i][j].format.columnWidth;
+                                newSheet.getCell(i, j).format.fill.color = cellFormat[i][j].format.fill.color;
+                            }
+                        }
+                        // Copy data to new worksheet
+                        console.log("k*numberOfCustomersPerNewSheet + 7 = " + (k * numberOfCustomersPerNewSheet + 7));
+                        dataRange = usedRange.getOffsetRange(k * numberOfCustomersPerNewSheet + 7, 0);
+                        dataRangeI1Cell00 = dataRange.getCell(0, 0);
+                        dataRangeI1 = dataRangeI1Cell00.getResizedRange(numberOfCustomersPerNewSheet - 1, 15);
+                        newSheet.getRange("A8").copyFrom(dataRangeI1); // parse data to new sheet
+                        usedRangeOfNewSheet = newSheet.getUsedRange();
+                        lastRowOfNewSheet = usedRangeOfNewSheet.getLastRow();
+                        lastRowOfNewSheet.load("height");
+                        return [4 /*yield*/, context.sync()];
+                    case 4:
+                        _a.sent();
+                        sumRowOfNewSheet = usedRangeOfNewSheet.getRowsBelow();
+                        sumRowOfNewSheet.format.rowHeight = lastRowOfNewSheet.height; //set height of sum row
+                        sumTextCell = sumRowOfNewSheet.getCell(0, 9);
+                        sumTextCell.values = [["Tổng"]];
+                        sumTextCell.format.font.bold = true;
+                        sumTextCell.format.borders.getItem("EdgeBottom").style = "Continuous"; //border
+                        sumCell = sumRowOfNewSheet.getCell(0, 10);
+                        if (!(k == numberOfNewSheet - 1)) return [3 /*break*/, 6];
+                        usedRangeOfNewSheet.load("rowCount");
+                        return [4 /*yield*/, context.sync()];
+                    case 5:
+                        _a.sent();
+                        sumCell.formulas = [["=SUM(K8:K" + usedRangeOfNewSheet.rowCount + ")"]];
+                        return [3 /*break*/, 7];
+                    case 6:
+                        sumCell.formulas = [["=SUM(K8:K27)"]];
+                        _a.label = 7;
+                    case 7:
+                        sumCell.numberFormat = [["[$-en-US,1]#,##0"]];
+                        sumCell.format.font.bold = true;
+                        sumCell.format.font.name = "Tahoma";
+                        sumCell.format.borders.getItem("EdgeBottom").style = "Continuous";
+                        sumCell.format.borders.getItem("EdgeRight").style = "Continuous";
+                        sumCell.format.verticalAlignment = "Top";
+                        _a.label = 8;
+                    case 8:
+                        k++;
+                        return [3 /*break*/, 3];
+                    case 9: return [4 /*yield*/, context.sync()];
+                    case 10:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    })["catch"](function (error) {
+        console.log("Error: " + error);
+        if (error instanceof OfficeExtension.Error) {
+            console.log("Debug info: " + JSON.stringify(error.debugInfo));
+        }
+    });
+}
+</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="footer-option">Tiện lợi như mơ</div>
+				<div class="copyright">Bản quyền thuộc Techlink Co Ltd.,</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri, 14/05/2021 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->
