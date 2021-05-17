@@ -34,8 +34,12 @@ var staticCallback = serveStatic('public/help',{ 'index': ['index.html', 'index.
  * Tạo đối tượng HTTP server với hàm đáp ứng reponse là staticCallback
  */
 //var server = http.createServer(app);
-var server = http.createServer(staticCallback);
+    //var server = http.createServer(serve);
     
+    /// Triệu gọi hàm callback cho web tĩnh một cách gián tiếp, sẵn sàng cho phân giải URL
+    var server = http.createServer(function(req,res){
+      staticCallback(req,res);
+    });
 
 
 /** Bắt đầu lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
