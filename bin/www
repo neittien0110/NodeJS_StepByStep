@@ -45,6 +45,10 @@ var staticCallback = serveStatic('public/help',{ 'index': ['index.html', 'index.
       res.send('Trang chủ. Page in Code');
     });
 
+    server.get('/', (req,res) => {
+      app(req,res)
+    });
+
 
 /** Bắt đầu lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
 server.listen(port);
