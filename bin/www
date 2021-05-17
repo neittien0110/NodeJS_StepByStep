@@ -17,6 +17,7 @@ var app = require('../app');
 */
 var debug = require('debug')('www');
 var http = require('http');
+var express = require('express');
 debug('Dịch vụ lắng nghe ở cổng  %o', process.env.PORT);
 
 /**
@@ -24,23 +25,21 @@ debug('Dịch vụ lắng nghe ở cổng  %o', process.env.PORT);
  */
 
 var port = normalizePort(process.env.PORT || '3000');
-    //-----------TRỞ THÀNH WEB lai TĨNH và ĐỘNG ------------------
+    //-----------TRỞ THÀNH WEB lai TĨNH ------------------
 //Module quản lý truy cập vào web tĩnh ở một thư mục nào đó
 var serveStatic = require('serve-static') 
 //Chỉ định rõ thư mục chứa các trang html tĩnh và các file tĩnh mặc định
 var staticCallback = serveStatic('public/help',{ 'index': ['index.html', 'index.htm'] });
 
-/**
- * Tạo đối tượng HTTP server với hàm đáp ứng reponse là staticCallback
- */
-//var server = http.createServer(app);
+    /**
+     * Tạo đối tượng HTTP server với hàm đáp ứng reponse là staticCallback
+     */
+    //var server = http.createServer(app);
     //var server = http.createServer(serve);
+    var server = express();
     
-    /// Triệu gọi hàm callback cho web tĩnh một cách gián tiếp, sẵn sàng cho phân giải URL
-    var server = http.createServer(function(req,res){
-      staticCallback(req,res);
-    });
-
+    server.use(staticCallback);       //http://localhost:3000/  sẽ hiện ra các website tĩnh
+    server.use(serveStatic('public/help2',{ 'extensions': ['html', 'htm'] }));  //http://localhost:3000/xyz   sẽ hiện ra trang tĩnh xyz.html  trong thư mục tương ứng thứ 2
 
 /** Bắt đầu lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
 server.listen(port);

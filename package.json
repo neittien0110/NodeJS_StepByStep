@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "SET DEBUG=www & node ./bin/www",
     "autorestart": "nodemon ./bin/www",
     "autorestartanddebug": "SET DEBUG=www & npm run autorestart"
   },
