@@ -38,8 +38,13 @@ var staticCallback = serveStatic('public/help',{ 'index': ['index.html', 'index.
     //var server = http.createServer(serve);
     var server = express();
     
-    server.use(staticCallback);       //http://localhost:3000/  sẽ hiện ra các website tĩnh
-    server.use(serveStatic('public/help2',{ 'extensions': ['html', 'htm'] }));  //http://localhost:3000/xyz   sẽ hiện ra trang tĩnh xyz.html  trong thư mục tương ứng thứ 2
+    server.use('/stat', staticCallback);       //http://localhost:3000/stat  sẽ hiện ra các website tĩnh
+    server.use('/stat', serveStatic('public/help2',{ 'extensions': ['html', 'htm'] }));  //http://localhost:3000/stat/xyz   sẽ hiện ra trang tĩnh xyz.html  trong thư mục tương ứng thứ 2
+    
+    server.get('/code', (req,res) => {
+      res.send('Trang chủ. Page in Code');
+    });
+
 
 /** Bắt đầu lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
 server.listen(port);
