@@ -24,15 +24,21 @@ debug('Dịch vụ lắng nghe ở cổng  %o', process.env.PORT);
  */
 
 var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+    //-----------TRỞ THÀNH WEB lai TĨNH và ĐỘNG ------------------
+//Module quản lý truy cập vào web tĩnh ở một thư mục nào đó
+var serveStatic = require('serve-static') 
+//Chỉ định rõ thư mục chứa các trang html tĩnh và các file tĩnh mặc định
+var staticCallback = serveStatic('public/help',{ 'index': ['index.html', 'index.htm'] });
 
 /**
- * Tạo đối tượng HTTP server.
+ * Tạo đối tượng HTTP server với hàm đáp ứng reponse là staticCallback
  */
+//var server = http.createServer(app);
+var server = http.createServer(staticCallback);
+    
 
-var server = http.createServer(app);
 
-/** Thiết lập cổng lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
+/** Bắt đầu lắng nghe dich vụ. Mặc định trên tất cả các interface mạng. */
 server.listen(port);
 
 /** Khai báo hàm callback khi có lỗi xảy ra */
